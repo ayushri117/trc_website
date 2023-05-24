@@ -51,7 +51,7 @@ const Team = () => {
         initial="hidden"
         animate={facultyControl}
       >
-        TEAM
+        FACULTY
       </motion.h1>
       <div className="team_faculty_container" ref={ref1}>
         <MemberCard
@@ -76,6 +76,27 @@ const Team = () => {
           delay={0.4}
         ></MemberCard>
       </div>
+      <motion.h1
+        className="team_heading"
+        variants={{
+          hidden: {
+            y: 24,
+            opacity: 0,
+          },
+          animate: {
+            y: 0,
+            opacity: 1,
+            transition: {
+              ease: [0.6, 0.01, 0.05, 0.98],
+              duration: 1.6,
+            },
+          },
+        }}
+        initial="hidden"
+        animate={memberControl}
+      >
+        TEAM
+      </motion.h1>
       <div className="team_mem_members" ref={ref2}>
         <MemberCard
           control={memberControl}

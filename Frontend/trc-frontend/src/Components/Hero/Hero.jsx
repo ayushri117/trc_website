@@ -1,7 +1,7 @@
 import React from "react";
 import bgVideo from "../../assets/bgVideo.mp4";
 import "./Hero.css";
-import { motion } from "framer-motion";
+import { motion, useTransform, useScroll } from "framer-motion";
 import { ArrowDown } from "feather-icons-react/build/IconComponents";
 import { Link } from "react-scroll";
 import SplitType from "split-type";
@@ -9,6 +9,8 @@ import { animate, stagger } from "motion";
 import { useEffect } from "react";
 
 const Hero = () => {
+  let { scrollYProgress } = useScroll();
+  let y = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
   useEffect(() => {
     const header = new SplitType("#hero_heading", { types: "words" });
     const subHeader = new SplitType("#hero_subheading", { types: "chars" });
@@ -22,7 +24,7 @@ const Hero = () => {
   }, []);
   return (
     <div className="hero_container">
-      <div className="hero_overlay"></div>
+      <motion.div className="hero_overlay"></motion.div>
       <motion.video
         variants={{
           hidden: {
@@ -43,10 +45,10 @@ const Hero = () => {
         loop
         muted
       ></motion.video>
-      <div className="hero_content">
-        <h1 className="hero_heading" id="hero_heading">
+      <motion.div className="hero_content" style={{ y, zIndex: 3 }}>
+        <motion.h1 className="hero_heading" id="hero_heading">
           THE ROBOTICS CLUB
-        </h1>
+        </motion.h1>
         <h3 className="hero_subheading" id="hero_subheading">
           IIT PALAKKAD
         </h3>
@@ -60,7 +62,7 @@ const Hero = () => {
         >
           <ArrowDown className="hero_icon"></ArrowDown>
         </Link>
-      </div>
+      </motion.div>
     </div>
   );
 };
