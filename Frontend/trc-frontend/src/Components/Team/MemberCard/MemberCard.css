@@ -1,0 +1,83 @@
+.memCard_container
+{
+    width:450px;
+    height: 512px;
+    border: 1px solid;
+    border-color: #202328;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;  
+    padding-inline: 0.5rem;
+    margin-bottom: 50px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    background: linear-gradient(135deg , rgba(20, 24, 26, 1) , rgba(255,255,255,0));
+    transition: all 0.5s ease;
+}
+.memCard_container:hover
+{
+    border-color: rgba(255, 255, 255, 0.2);
+    /* background: linear-gradient(135deg , rgba(255,255,255, 0.1) , rgba(20, 24, 26, 1)); */
+}
+
+.memImageBox
+{
+    justify-self: flex-start;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-bottom: 16px;
+}
+
+.mem_Image
+{
+    justify-self: flex-start;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+.mem_Name
+{
+    font-size: 1.5rem;
+    color:#FFF ;
+}
+
+.mem_Role
+{
+    font-size: 1.2rem;
+    color:#B0B5C0;
+}
+
+.mem_links
+{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+    justify-content: space-around;
+}
+
+.mem_icon
+{
+    color: #646D7D;
+    transition: all ease 0.5s;
+    cursor: pointer;
+}
+
+.mem_icon:hover
+{
+    color: #185ADD;
+}
+
+.mem_info
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
