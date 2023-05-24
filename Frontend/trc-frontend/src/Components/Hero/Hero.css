@@ -12,7 +12,7 @@
 {
     font-size: 8rem;
     color:#FFF ;
-    z-index: 2;
+    z-index: 3;
 }
 
 .hero_overlay
@@ -23,7 +23,7 @@
     left: 0;
     position: absolute;
     z-index: 2;
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0,0,0,0.5);
 }
 
 .hero_content
@@ -41,7 +41,7 @@
 {
     font-size: 2.5rem;
     color:#A5ABB6 ;
-    z-index: 2;
+    z-index: 3;
 }
 
 video{

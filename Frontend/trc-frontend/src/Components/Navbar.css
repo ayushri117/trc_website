@@ -4,7 +4,7 @@
     height: 78px;
     /* background-color: #E1E6F0; */
     background-color: #070709CC;
-    backdrop-filter: saturate(180%) blur(15px);
+    backdrop-filter: saturate(180%) blur(10px);
     position: fixed;
     z-index: 10;
     display: flex;
