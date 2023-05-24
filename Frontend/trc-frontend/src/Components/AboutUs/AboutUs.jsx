@@ -1,11 +1,54 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import "./AboutUs.css";
+import { motion, useInView, useAnimation } from "framer-motion";
+import SplitType from "split-type";
+import { animate, stagger } from "motion";
 
 const AboutUs = () => {
+  let ref = useRef(null);
+  let inView = useInView(ref, { once: false });
+  let headingControl = useAnimation();
+
+  useEffect(() => {
+    const paralines = new SplitType("#about_content", { types: "lines" });
+    const aboutElement = [...paralines.lines];
+    if (inView) {
+      headingControl.start("animate");
+
+      animate(
+        aboutElement,
+        { y: [50, 0], opacity: [0, 1] },
+        { duration: 1.6, delay: stagger(0.05) }
+      );
+    } else {
+      headingControl.start("hidden");
+    }
+  }, [inView]);
   return (
     <div className="about_container">
-      <h1 className="about_heading">ABOUT US</h1>
-      <p className="about_content">
+      <motion.h1
+        ref={ref}
+        variants={{
+          hidden: {
+            y: 24,
+            opacity: 0,
+          },
+          animate: {
+            y: 0,
+            opacity: 1,
+            transition: {
+              ease: [0.6, 0.01, 0.05, 0.98],
+              duration: 1.6,
+            },
+          },
+        }}
+        initial="hidden"
+        animate={headingControl}
+        className="about_heading"
+      >
+        ABOUT US
+      </motion.h1>
+      <p className="about_content" id="about_content">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis nam
         tempora, eos pariatur neque cumque commodi nostrum, sint suscipit libero
         delectus atque veritatis aspernatur incidunt nemo dicta voluptates at
