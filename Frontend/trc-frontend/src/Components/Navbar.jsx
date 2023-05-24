@@ -1,23 +1,45 @@
 import React from "react";
 import logo from "../assets/Logo2.png";
+import { Link } from "react-scroll";
 import "./Navbar.css";
 
 const Navbar = () => {
   return (
     <div className="navbar_container">
-      <div className="logo_box">
+      <Link
+        className="logo_box"
+        to="hero_container"
+        spy={true}
+        smooth={true}
+        offset={50}
+        duration={500}
+      >
         <img src={logo} className="logoImage" />
-      </div>
+      </Link>
       <ul className="navbar__box">
         <li className="navbar_itemBox">
-          <a href="" className="navbar__item">
+          <Link
+            className="navbar__item"
+            to="hero_container"
+            spy={true}
+            smooth={true}
+            offset={50}
+            duration={500}
+          >
             HOME
-          </a>
+          </Link>
         </li>
         <li className="navbar_itemBox">
-          <a href="" className="navbar__item">
+          <Link
+            className="navbar__item"
+            to="about_container"
+            spy={true}
+            smooth={true}
+            offset={-50}
+            duration={500}
+          >
             ABOUT
-          </a>
+          </Link>
         </li>
         <li className="navbar_itemBox">
           <a href="" className="navbar__item">
@@ -35,14 +57,28 @@ const Navbar = () => {
           </a>
         </li>
         <li className="navbar_itemBox">
-          <a href="" className="navbar__item">
+          <Link
+            className="navbar__item"
+            to="team_container"
+            spy={true}
+            smooth={true}
+            offset={-50}
+            duration={500}
+          >
             TEAM
-          </a>
+          </Link>
         </li>
         <li className="navbar_itemBox">
-          <a href="" className="navbar__item">
+          <Link
+            className="navbar__item"
+            to="contact_container"
+            spy={true}
+            smooth={true}
+            offset={-50}
+            duration={500}
+          >
             CONTACT
-          </a>
+          </Link>
         </li>
       </ul>
     </div>
