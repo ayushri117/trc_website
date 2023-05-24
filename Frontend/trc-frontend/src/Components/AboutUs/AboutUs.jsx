@@ -6,7 +6,7 @@ import { animate, stagger } from "motion";
 
 const AboutUs = () => {
   let ref = useRef(null);
-  let inView = useInView(ref, { once: false });
+  let inView = useInView(ref, { once: true });
   let headingControl = useAnimation();
 
   useEffect(() => {

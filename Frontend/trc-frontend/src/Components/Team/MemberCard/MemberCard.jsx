@@ -1,13 +1,35 @@
 import React from "react";
 import "./MemberCard.css";
-
+import { motion, useInView, useAnimation } from "framer-motion";
+import SplitType from "split-type";
+import { animate, stagger } from "motion";
 import { Phone } from "feather-icons-react/build/IconComponents";
 import { Mail } from "feather-icons-react/build/IconComponents";
 import { Linkedin } from "feather-icons-react/build/IconComponents";
 
-const MemberCard = ({ profileImage, name, role }) => {
+const MemberCard = ({ profileImage, name, role, control, delay }) => {
   return (
-    <div className="memCard_container">
+    <motion.div
+      className="memCard_container"
+      id="memCard_container"
+      variants={{
+        hidden: {
+          rotateY: -90,
+          opacity: 0,
+        },
+        animate: {
+          rotateY: 0,
+          opacity: 1,
+          transition: {
+            duration: 0.8,
+            ease: "backIn",
+            delay: `${delay}`,
+          },
+        },
+      }}
+      initial="hidden"
+      animate={control}
+    >
       <div className="memImageBox">
         <img src={profileImage} className="mem_Image" />
       </div>
@@ -21,7 +43,7 @@ const MemberCard = ({ profileImage, name, role }) => {
         <Mail className="mem_icon"></Mail>
         <Linkedin className="mem_icon"></Linkedin>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
