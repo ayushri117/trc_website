@@ -5,6 +5,19 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    
+}
+
+.about_overlay
+{   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+    background-color: #070709;
     padding-bottom: 80px;
 }
 
@@ -12,6 +25,7 @@
 {
     font-size: 5rem;
     color:#FFF ;
+    z-index: 1;
 }
 
 .about_content
@@ -21,4 +35,5 @@
     line-height: 2.2rem;
     color:#A5ABB6 ;
     text-align: left;
+    z-index: 1;
 }

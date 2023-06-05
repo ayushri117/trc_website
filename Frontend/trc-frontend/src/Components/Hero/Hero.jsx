@@ -1,5 +1,5 @@
 import React from "react";
-import bgVideo from "../../assets/bgVideo.mp4";
+import bgVideo from "../../assets/bgVideo2.mp4";
 import "./Hero.css";
 import { motion, useTransform, useScroll } from "framer-motion";
 import { ArrowDown } from "feather-icons-react/build/IconComponents";

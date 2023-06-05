@@ -7,6 +7,19 @@
     justify-content: flex-start;
     /* padding: 32px; */
     background-color: #202328;
+    z-index: 1;
+}
+
+.contact_backdrop
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    /* padding: 32px; */
+    background-color: #202328;
+    z-index: 1;
 }
 
 .contact_socialMedia
@@ -15,12 +28,14 @@
     flex-direction: row;
     align-items: center;
     gap: 20px;
+    z-index: 2;
 }
 
 .contact_heading
 {
     font-size: 5rem;
     color:#FFF ;
+    z-index: 2;
 }
 
 .contact_box
@@ -30,12 +45,14 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
+    z-index: 2;
 }
 
 .footer_text
 {
     font-size: 1.2rem;
     color: white;
+    z-index: 2;
 }
 
 .contact_linkIcon
@@ -46,11 +63,12 @@
     height: auto;
     width: 45px;
     padding: 8px;
+    z-index: 2;
 }
 
 .contact_linkIcon:hover
 {
     border-radius: 50%;
     background-color: #185ADD;
-    
+    z-index: 2;
 }

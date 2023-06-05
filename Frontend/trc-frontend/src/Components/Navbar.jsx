@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../assets/Logo2.png";
+import logo from "../assets/Logo.webp";
 import { Link } from "react-scroll";
 import "./Navbar.css";
 import { motion } from "framer-motion";

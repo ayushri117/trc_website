@@ -32,87 +32,89 @@ const Team = () => {
 
   return (
     <div className="team_container">
-      <motion.h1
-        className="team_heading"
-        variants={{
-          hidden: {
-            y: 24,
-            opacity: 0,
-          },
-          animate: {
-            y: 0,
-            opacity: 1,
-            transition: {
-              ease: [0.6, 0.01, 0.05, 0.98],
-              duration: 1.6,
+      <motion.div className="team_overlay">
+        <motion.h1
+          className="team_heading"
+          variants={{
+            hidden: {
+              y: 24,
+              opacity: 0,
             },
-          },
-        }}
-        initial="hidden"
-        animate={facultyControl}
-      >
-        FACULTY
-      </motion.h1>
-      <div className="team_faculty_container" ref={ref1}>
-        <MemberCard
-          control={facultyControl}
-          profileImage={faculty1}
-          name="Santhakumar Mohan"
-          role="Faculty"
-          delay={0}
-        ></MemberCard>
-        <MemberCard
-          control={facultyControl}
-          profileImage={faculty2}
-          name="Vijay Murlidharan"
-          role="Faculty"
-          delay={0.2}
-        ></MemberCard>
-        <MemberCard
-          control={facultyControl}
-          profileImage={faculty3}
-          name="Sneha Gajbhiye"
-          role="Faculty"
-          delay={0.4}
-        ></MemberCard>
-      </div>
-      <motion.h1
-        className="team_heading"
-        variants={{
-          hidden: {
-            y: 24,
-            opacity: 0,
-          },
-          animate: {
-            y: 0,
-            opacity: 1,
-            transition: {
-              ease: [0.6, 0.01, 0.05, 0.98],
-              duration: 1.6,
+            animate: {
+              y: 0,
+              opacity: 1,
+              transition: {
+                ease: [0.6, 0.01, 0.05, 0.98],
+                duration: 1.6,
+              },
             },
-          },
-        }}
-        initial="hidden"
-        animate={memberControl}
-      >
-        TEAM
-      </motion.h1>
-      <div className="team_mem_members" ref={ref2}>
-        <MemberCard
-          control={memberControl}
-          profileImage={headProfile}
-          name="Ayush Singh"
-          role="Club Head"
-          delay={0}
-        ></MemberCard>
-        <MemberCard
-          control={memberControl}
-          profileImage={blankProfile}
-          name="Shivansh Chaudhary"
-          role="Mentor"
-          delay={0.2}
-        ></MemberCard>
-      </div>
+          }}
+          initial="hidden"
+          animate={facultyControl}
+        >
+          FACULTY
+        </motion.h1>
+        <div className="team_faculty_container" ref={ref1}>
+          <MemberCard
+            control={facultyControl}
+            profileImage={faculty1}
+            name="Santhakumar Mohan"
+            role="Faculty"
+            delay={0}
+          ></MemberCard>
+          <MemberCard
+            control={facultyControl}
+            profileImage={faculty2}
+            name="Vijay Murlidharan"
+            role="Faculty"
+            delay={0.2}
+          ></MemberCard>
+          <MemberCard
+            control={facultyControl}
+            profileImage={faculty3}
+            name="Sneha Gajbhiye"
+            role="Faculty"
+            delay={0.4}
+          ></MemberCard>
+        </div>
+        <motion.h1
+          className="team_heading"
+          variants={{
+            hidden: {
+              y: 24,
+              opacity: 0,
+            },
+            animate: {
+              y: 0,
+              opacity: 1,
+              transition: {
+                ease: [0.6, 0.01, 0.05, 0.98],
+                duration: 1.6,
+              },
+            },
+          }}
+          initial="hidden"
+          animate={memberControl}
+        >
+          TEAM
+        </motion.h1>
+        <div className="team_mem_members" ref={ref2}>
+          <MemberCard
+            control={memberControl}
+            profileImage={headProfile}
+            name="Ayush Singh"
+            role="Club Head"
+            delay={0}
+          ></MemberCard>
+          <MemberCard
+            control={memberControl}
+            profileImage={blankProfile}
+            name="Shivansh Chaudhary"
+            role="Mentor"
+            delay={0.2}
+          ></MemberCard>
+        </div>
+      </motion.div>
     </div>
   );
 };
