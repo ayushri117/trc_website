@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import "./Team.css";
 import MemberCard from "./MemberCard/MemberCard";
 import headProfile from "../../assets/profile.jpeg";
@@ -7,8 +7,7 @@ import faculty1 from "../../assets/faculty1.jpg";
 import faculty2 from "../../assets/faculty2.jpg";
 import faculty3 from "../../assets/faculty3.jpg";
 import { motion, useInView, useAnimation } from "framer-motion";
-import SplitType from "split-type";
-import { animate, stagger } from "motion";
+
 
 const Team = () => {
   let ref1 = useRef(null);

@@ -1,8 +1,6 @@
-import React from "react";
+
 import "./MemberCard.css";
-import { motion, useInView, useAnimation } from "framer-motion";
-import SplitType from "split-type";
-import { animate, stagger } from "motion";
+import { motion } from "framer-motion";
 import { Phone } from "feather-icons-react/build/IconComponents";
 import { Mail } from "feather-icons-react/build/IconComponents";
 import { Linkedin } from "feather-icons-react/build/IconComponents";

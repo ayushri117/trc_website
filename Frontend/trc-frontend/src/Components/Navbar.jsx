@@ -1,7 +1,8 @@
-import React from "react";
-import logo from "../assets/Logo.webp";
+
+import logo from "../assets/Logo2.png";
 import { Link } from "react-scroll";
 import "./Navbar.css";
+import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const Navbar = () => {
@@ -28,7 +29,7 @@ const Navbar = () => {
     >
       <Link
         className="logo_box"
-        to="hero_container"
+        to="/"
         spy={true}
         smooth={true}
         offset={-50}
@@ -38,67 +39,67 @@ const Navbar = () => {
       </Link>
       <ul className="navbar__box">
         <li className="navbar_itemBox">
-          <Link
+          <NavLink
             className="navbar__item"
-            to="hero_container"
+            to="/"
             spy={true}
             smooth={true}
             offset={-50}
             duration={500}
           >
             HOME
-          </Link>
+          </NavLink>
         </li>
         <li className="navbar_itemBox">
-          <Link
+          <NavLink
             className="navbar__item"
-            to="about_container"
+            to="/about"
             spy={true}
             smooth={true}
             offset={-50}
             duration={500}
           >
             ABOUT
-          </Link>
+          </NavLink>
         </li>
         <li className="navbar_itemBox">
-          <a href="" className="navbar__item">
+          <NavLink to="/resources" className="navbar__item">
             RESOURCES
-          </a>
+          </NavLink>
         </li>
         <li className="navbar_itemBox">
-          <a href="" className="navbar__item">
+          <NavLink to="/blogs" className="navbar__item">
             BLOGS
-          </a>
+          </NavLink>
         </li>
         <li className="navbar_itemBox">
-          <a href="" className="navbar__item">
+          <NavLink to="/gallery"  className="navbar__item">
             GALLERY
-          </a>
+          </NavLink>
         </li>
         <li className="navbar_itemBox">
-          <Link
+          <NavLink
             className="navbar__item"
-            to="team_container"
+            to="/team"
             spy={true}
             smooth={true}
             offset={-50}
             duration={500}
           >
             TEAM
-          </Link>
+          </NavLink>
         </li>
         <li className="navbar_itemBox">
-          <Link
+          <NavLink
             className="navbar__item"
-            to="contact_container"
+            to="/contactUs"
             spy={true}
             smooth={true}
             offset={-50}
             duration={500}
           >
             CONTACT
-          </Link>
+          </NavLink>
         </li>
       </ul>
     </motion.div>
