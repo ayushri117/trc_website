@@ -41,10 +41,10 @@ const Navbar = () => {
           <NavLink
             className="navbar__item"
             to="/"
-            spy={true}
-            smooth={true}
-            offset={-50}
-            duration={500}
+            // spy={true}
+            // smooth={true}
+            // offset={-50}
+            // duration={500}
           >
             HOME
           </NavLink>
