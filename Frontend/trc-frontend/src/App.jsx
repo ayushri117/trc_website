@@ -16,7 +16,7 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: < Root />,
+      element: <Root />,
       children: [
         { index: true, element: <Homepage /> },
         { path: "resources", element: <ResourcesPage /> },
@@ -24,15 +24,14 @@ function App() {
         { path: "blogs", element: <BlogsPage /> },
         { path: "gallery", element: <GalleryPage /> },
         { path: "team", element: <TeamPage /> },
-        { path: "contactUs", element: <ContactPage /> }
-      ]
+        { path: "contactUs", element: <ContactPage /> },
+      ],
     },
-
-  ])
+  ]);
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence mode="wait" initial={false}>
       <div className="App">
         {isLoading && (
           <Loading isLoading={isLoading} setIsLoading={setIsLoading}></Loading>

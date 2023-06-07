@@ -1,5 +1,4 @@
-
-import logo from "../assets/Logo2.png";
+import logo from "../assets/logo.webp";
 import { Link } from "react-scroll";
 import "./Navbar.css";
 import { NavLink } from "react-router-dom";
@@ -29,7 +28,7 @@ const Navbar = () => {
     >
       <Link
         className="logo_box"
-        to="/"
+        to="hero_container"
         spy={true}
         smooth={true}
         offset={-50}
@@ -51,16 +50,29 @@ const Navbar = () => {
           </NavLink>
         </li>
         <li className="navbar_itemBox">
-          <NavLink
+          <Link
             className="navbar__item"
-            to="/about"
+            to="about_container"
             spy={true}
             smooth={true}
             offset={-50}
             duration={500}
           >
             ABOUT
-          </NavLink>
+          </Link>
+        </li>
+
+        <li className="navbar_itemBox">
+          <Link
+            className="navbar__item"
+            to="team_container"
+            spy={true}
+            smooth={true}
+            offset={-50}
+            duration={500}
+          >
+            TEAM
+          </Link>
         </li>
         <li className="navbar_itemBox">
           <NavLink to="/resources" className="navbar__item">
@@ -73,33 +85,21 @@ const Navbar = () => {
           </NavLink>
         </li>
         <li className="navbar_itemBox">
-          <NavLink to="/gallery"  className="navbar__item">
+          <NavLink to="/gallery" className="navbar__item">
             GALLERY
           </NavLink>
         </li>
         <li className="navbar_itemBox">
-          <NavLink
+          <Link
             className="navbar__item"
-            to="/team"
-            spy={true}
-            smooth={true}
-            offset={-50}
-            duration={500}
-          >
-            TEAM
-          </NavLink>
-        </li>
-        <li className="navbar_itemBox">
-          <NavLink
-            className="navbar__item"
-            to="/contactUs"
+            to="contact_container"
             spy={true}
             smooth={true}
             offset={-50}
             duration={500}
           >
             CONTACT
-          </NavLink>
+          </Link>
         </li>
       </ul>
     </motion.div>
