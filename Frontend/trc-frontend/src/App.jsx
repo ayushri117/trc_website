@@ -8,7 +8,7 @@ import AboutPage from "./pages/About";
 import Loading from "./Components/Loading";
 import { AnimatePresence } from "framer-motion";
 import BlogsPage from "./pages/Blogs";
-import GalleryPage from "./pages/Gallery";
+import GalleryPage from "./pages/Gallery/Gallery";
 import TeamPage from "./pages/Team";
 import ContactPage from "./pages/Contact";
 
