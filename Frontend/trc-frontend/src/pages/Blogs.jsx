@@ -1,8 +1,9 @@
 import React from 'react'
+import Selector from '../Components/Blogs Card/Selector'
 
 const BlogsPage = () => {
   return (
-    <div>BlogsPage</div>
+    <div> <Selector/> </div>
   )
 }
 

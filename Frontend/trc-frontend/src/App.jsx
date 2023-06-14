@@ -11,6 +11,9 @@ import BlogsPage from "./pages/Blogs";
 import GalleryPage from "./pages/Gallery/Gallery";
 import TeamPage from "./pages/Team";
 import ContactPage from "./pages/Contact";
+import BlogVideo from "./Components/Blogs Card/Videos/Blog";
+import TutorialVideo from "./Components/Blogs Card/Videos/Tutorial";
+import LectureVideo from "./Components/Blogs Card/Videos/Lecture";
 
 function App() {
   const router = createBrowserRouter([
@@ -25,6 +28,9 @@ function App() {
         { path: "gallery", element: <GalleryPage /> },
         { path: "team", element: <TeamPage /> },
         { path: "contactUs", element: <ContactPage /> },
+        { path: "blog", element: <BlogVideo/> },
+        { path: "tutorial", element: <TutorialVideo /> },
+        { path: "lecture", element: <LectureVideo /> },
       ],
     },
   ]);
