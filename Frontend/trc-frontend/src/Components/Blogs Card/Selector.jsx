@@ -2,18 +2,24 @@ import React from "react";
 import styles from "./Selector.module.css";
 import blog from "../../assets/bg.jpeg";
 import { NavLink } from "react-router-dom";
-import { motion, AnimatePresence } from 'framer-motion';
-
+import { motion, AnimatePresence } from "framer-motion";
 
 const Selector = () => {
-
-  
   return (
     <div className={styles.cardContainer}>
       <AnimatePresence>
-        <motion.div className={styles.card } 
-          initial={{ x: '90vw', opacity: 0 }}
-      animate={{ x: 0, opacity: 1, transition:{duration:0.5, ease:"linear"} }}>
+        <motion.div
+          className={styles.card}
+          initial={{ x: "90vw", opacity: 0 }}
+          animate={{
+            x: 0,
+            opacity: 1,
+            transition: {
+              duration: 0.5,
+              ease: [0.6, 0.01, 0.05, 0.98],
+            },
+          }}
+        >
           <div className={styles.circle}> </div>
           <div className={styles.content}>
             <h2>Blogs</h2>
@@ -30,12 +36,22 @@ const Selector = () => {
           </div>
           <img src={blog} alt="blogs" />
         </motion.div>
-      </AnimatePresence>  
+      </AnimatePresence>
 
       <AnimatePresence>
-        <motion.div className={styles.card } 
-          initial={{ x: '90vw', opacity: 0 }}
-      animate={{ x: 0, opacity: 1, transition:{duration:0.6, ease:"linear"} }}>
+        <motion.div
+          className={styles.card}
+          initial={{ x: "90vw", opacity: 0 }}
+          animate={{
+            x: 0,
+            opacity: 1,
+            transition: {
+              duration: 0.5,
+              delay: 0.2,
+              ease: [0.6, 0.01, 0.05, 0.98],
+            },
+          }}
+        >
           <div className={styles.circle}> </div>
           <div className={styles.content}>
             <h2>Tutorials</h2>
@@ -52,12 +68,22 @@ const Selector = () => {
           </div>
           <img src={blog} alt="blogs" />
         </motion.div>
-      </AnimatePresence>    
+      </AnimatePresence>
 
       <AnimatePresence>
-        <motion.div className={styles.card } 
-          initial={{ x: '90vw', opacity: 0 }}
-      animate={{ x: 0, opacity: 1, transition:{duration:0.7, ease:"linear"} }}>
+        <motion.div
+          className={styles.card}
+          initial={{ x: "90vw", opacity: 0 }}
+          animate={{
+            x: 0,
+            opacity: 1,
+            transition: {
+              duration: 0.5,
+              delay: 0.4,
+              ease: [0.6, 0.01, 0.05, 0.98],
+            },
+          }}
+        >
           <div className={styles.circle}> </div>
           <div className={styles.content}>
             <h2>Lectures</h2>
@@ -74,7 +100,7 @@ const Selector = () => {
           </div>
           <img src={blog} alt="blogs" />
         </motion.div>
-      </AnimatePresence>  
+      </AnimatePresence>
     </div>
   );
 };
