@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import styles from '../selector.module.css';
+import styles from "../selector.module.css";
 
 const api = import.meta.env.VITE_NEWSKEY2;
 const searchWord = "robotics";
@@ -52,11 +52,15 @@ const BlogVideo = () => {
   }, []);
 
   return (
-    <div style={{paddingTop:'100px'}}>
+    <div style={{ paddingTop: "100px" }}>
       {blogs.map((item) => (
         <div key={item.keyId} className={styles.blogContainer}>
-          <img src={item.urlToImage} alt="blog Image" className={styles.blogImage} />
-          <div className={styles.blogContent}>            
+          <img
+            src={item.urlToImage}
+            alt="blog Image"
+            className={styles.blogImage}
+          />
+          <div className={styles.blogContent}>
             <div>
               <h2 className={styles.blogTitle}>{item.title}</h2>
             </div>
@@ -66,7 +70,12 @@ const BlogVideo = () => {
             </div>
             <div>
               <p className={styles.blogDescription}>{item.description}</p>
-              <a href={item.url} target="_blank" rel="noreferrer" className={styles.blogLink}>
+              <a
+                href={item.url}
+                target="_blank"
+                rel="noreferrer"
+                className={styles.blogLink}
+              >
                 Know More
               </a>
             </div>
