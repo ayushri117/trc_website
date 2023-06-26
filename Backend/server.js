@@ -3,13 +3,26 @@ const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
 const User = require("./Model/User");
+
 require("dotenv").config({ paht: "/.env" });
 
 const username = process.env["DATABASE_USERNAME"];
 const password = process.env["DATABASE_PASSWORD"];
 
-const MONGODB_URI = `mongodb+srv://${username}:${password}@cluster0.fj5wuhm.mongodb.net/data`;
+const MONGODB_URI = `mongodb+srv://${username}:${password}@cluster0.fj5wuhm.mongodb.net/test`;
 const loginRoute = require("./Routes/login");
+
+// const temp = async () => {
+//   try {
+//     await User.create({
+//       email: "trc-head@smail.iitpkd.acin",
+//       password: "trc@123",
+//     });
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+// temp();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
