@@ -8,7 +8,13 @@ exports.login = async (req, res, next) => {
     console.log(password);
 
     if (!(email && password)) {
-      res.status(400).send("All input is required");
+      console.log("All Feilds Mandatory");
+      res.status(201).json({
+        status: 201,
+        ok: true,
+        error: true,
+        message: "All Feilds Mandatory",
+      });
     }
 
     const user = await User.findOne({ email });
@@ -28,32 +34,39 @@ exports.login = async (req, res, next) => {
       await user.save();
 
       res.status(200).json({
-        statusCode: 200,
-        message: "success",
+        status: 200,
+        ok: true,
+        message: "User Logged In",
         email: email,
         token: token,
         expiresIn: "2h",
       });
     } else {
-      res.status(400).send("Invalid Credentials");
+      console.log("User not found!");
+      res.status(202).json({
+        status: 202,
+        ok: true,
+        error: true,
+        message: "User not found!",
+      });
     }
   } catch (err) {
     console.log(err);
+
+    res.status(500).json({
+      status: 500,
+      ok: false,
+      message: "Server Error",
+    });
   }
 };
 
 exports.logout = async (req, res, next) => {
   try {
-    const { email } = req.body;
-
-    if (!email) {
-      res.status(400).send("All input is required");
-    }
-
-    const user = await User.findOne({ email });
+    const user = await User.findOne();
 
     if (user) {
-      console.log("user Found");
+      console.log("user Found for logout");
 
       user.token = null;
 
@@ -61,12 +74,15 @@ exports.logout = async (req, res, next) => {
 
       res.status(200).json({
         statusCode: 200,
+        ok: true,
         message: "User Has been logged out",
       });
-    } else {
-      res.status(400).send("Invalid Credentials");
     }
   } catch (err) {
-    console.log(err);
+    res.status(500).json({
+      status: 500,
+      ok: false,
+      message: "Server Error",
+    });
   }
 };

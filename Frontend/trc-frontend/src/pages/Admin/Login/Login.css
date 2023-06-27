@@ -5,6 +5,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    color: white;
 }
 
 .form_container{
@@ -19,7 +22,7 @@
 
 .form_container input{
     height: 32px;
-    width: 200px;
+    width: 400px;
     padding: 10px;
 }
 .form_container button{

@@ -1,8 +1,9 @@
 import logo from "../../../assets/logo.webp";
 import "./AdminNavbar.css";
-import { NavLink } from "react-router-dom";
+import { Form, NavLink, useRouteLoaderData } from "react-router-dom";
 
 const AdminNavbar = () => {
+  const token = useRouteLoaderData("admin-root");
   return (
     <div className="adnavbar_container">
       <div className="adlogo_box">
@@ -34,11 +35,13 @@ const AdminNavbar = () => {
             GALLERY
           </NavLink>
         </li>
-        {/* <li className="adnavbar_itemBox">
-          <NavLink className="adnavbar__item" to="contact">
-            CONTACT
-          </NavLink>
-        </li> */}
+        {token && (
+          <li className="adnavbar_itemBox">
+            <Form action="logout" method="POST">
+              <button style={{ backgroundColor: "red" }}>Logout</button>
+            </Form>
+          </li>
+        )}
       </ul>
     </div>
   );

@@ -16,11 +16,14 @@ import TutorialVideo from "./Components/Blogs Card/Videos/Tutorial";
 import LectureVideo from "./Components/Blogs Card/Videos/Lecture";
 import AdminRoot from "./pages/Admin/AdminRoot/ADminRoot";
 import AdminHome from "./pages/Admin/Home/AdminHome";
-import Login from "./pages/Admin/Login/Login";
+import Login, { action as authAction } from "./pages/Admin/Login/Login";
 import TeamEdit from "./pages/Admin/Team/TeamEdit";
 import GalleryEdit from "./pages/Admin/Gallery/GalleryEdit";
 import BlogsEdit from "./pages/Admin/Blogs/BlogsEdit";
 import ResourcesEdit from "./pages/Admin/Resources/ResourcesEdit";
+import { action as logoutAction } from "./pages/Admin/Logout/Logout";
+import { tokenLoader } from "../util/auth";
+import { checkAuthToken } from "../util/auth";
 
 function App() {
   const router = createBrowserRouter([
@@ -43,13 +46,40 @@ function App() {
     {
       path: "/admin",
       element: <AdminRoot></AdminRoot>,
+      // errorElement: <h1 style={{ color: "white" }}>Somthing Went Wrong</h1>,
+      id: "admin-root",
+      loader: tokenLoader,
       children: [
-        { index: true, element: <AdminHome></AdminHome> },
-        { path: "login", element: <Login></Login> },
-        { path: "team", element: <TeamEdit></TeamEdit> },
-        { path: "gallery", element: <GalleryEdit></GalleryEdit> },
-        { path: "blogs", element: <BlogsEdit></BlogsEdit> },
-        { path: "resources", element: <ResourcesEdit></ResourcesEdit> },
+        {
+          index: true,
+          element: <AdminHome></AdminHome>,
+          loader: checkAuthToken,
+        },
+        { path: "login", element: <Login></Login>, action: authAction },
+        {
+          path: "team",
+          element: <TeamEdit></TeamEdit>,
+          loader: checkAuthToken,
+        },
+        {
+          path: "gallery",
+          element: <GalleryEdit></GalleryEdit>,
+          loader: checkAuthToken,
+        },
+        {
+          path: "blogs",
+          element: <BlogsEdit></BlogsEdit>,
+          loader: checkAuthToken,
+        },
+        {
+          path: "resources",
+          element: <ResourcesEdit></ResourcesEdit>,
+          loader: checkAuthToken,
+        },
+        {
+          path: "logout",
+          action: logoutAction,
+        },
       ],
     },
   ]);
