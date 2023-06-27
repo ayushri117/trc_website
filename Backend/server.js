@@ -10,7 +10,7 @@ const username = process.env["DATABASE_USERNAME"];
 const password = process.env["DATABASE_PASSWORD"];
 
 const MONGODB_URI = `mongodb+srv://${username}:${password}@cluster0.fj5wuhm.mongodb.net/test`;
-const loginRoute = require("./Routes/login");
+const authRoute = require("./Routes/auth");
 
 // const temp = async () => {
 //   try {
@@ -31,7 +31,7 @@ app.use(
     origin: "*",
   })
 );
-app.use(loginRoute);
+app.use(authRoute);
 
 mongoose
   .connect(MONGODB_URI)

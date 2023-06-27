@@ -1,0 +1,55 @@
+.adnavbar_container
+{
+    width: 100%;
+    height: 78px;
+    /* background-color: #E1E6F0; */
+    background-color: #070709CC;
+    backdrop-filter: saturate(180%) blur(10px);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    padding: 18px;
+    top: 0;
+}
+
+.adnavbar__box
+{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 25px;
+    margin-right: 40px;
+    list-style: none;
+}
+
+.adnavbar_itemBox
+{
+    padding: 8px;
+    cursor: pointer;
+}
+
+.adnavbar__item
+{
+    text-decoration: none;
+    color: #8E96A4;
+    transition: all 0.5s ease;
+}
+
+.adnavbar__item:hover{
+    color: #E1E6F0;
+}
+
+.adlogo_box
+{
+    padding: 20px;
+    width: 120px;
+    justify-self: flex-start;
+}
+
+.adlogoImage
+{
+    width: 100%;
+
+}

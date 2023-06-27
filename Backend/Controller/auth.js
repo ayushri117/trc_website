@@ -41,3 +41,32 @@ exports.login = async (req, res, next) => {
     console.log(err);
   }
 };
+
+exports.logout = async (req, res, next) => {
+  try {
+    const { email } = req.body;
+
+    if (!email) {
+      res.status(400).send("All input is required");
+    }
+
+    const user = await User.findOne({ email });
+
+    if (user) {
+      console.log("user Found");
+
+      user.token = null;
+
+      await user.save();
+
+      res.status(200).json({
+        statusCode: 200,
+        message: "User Has been logged out",
+      });
+    } else {
+      res.status(400).send("Invalid Credentials");
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
