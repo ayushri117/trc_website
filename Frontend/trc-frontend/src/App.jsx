@@ -15,7 +15,6 @@ import BlogVideo from "./Components/Blogs Card/Videos/Blog";
 import TutorialVideo from "./Components/Blogs Card/Videos/Tutorial";
 import LectureVideo from "./Components/Blogs Card/Videos/Lecture";
 import AdminRoot from "./pages/Admin/AdminRoot/ADminRoot";
-import AdminHome from "./pages/Admin/Home/AdminHome";
 import Login, { action as authAction } from "./pages/Admin/Login/Login";
 import TeamEdit from "./pages/Admin/Team/TeamEdit";
 import GalleryEdit from "./pages/Admin/Gallery/GalleryEdit";
@@ -24,6 +23,11 @@ import ResourcesEdit from "./pages/Admin/Resources/ResourcesEdit";
 import { action as logoutAction } from "./pages/Admin/Logout/Logout";
 import { tokenLoader } from "../util/auth";
 import { checkAuthToken } from "../util/auth";
+import { loader as teamLoaderAuth } from "./pages/Admin/Team/TeamEdit";
+import FacultyEdit from "./pages/Admin/Faculty/FacultyEdit";
+import AddMember from "./pages/Admin/Team/AddMember";
+import { action as MemberAction } from "./pages/Admin/Team/AddMember";
+import { action as DeleteACtion } from "./pages/Admin/Team/TeamEdit";
 
 function App() {
   const router = createBrowserRouter([
@@ -52,13 +56,20 @@ function App() {
       children: [
         {
           index: true,
-          element: <AdminHome></AdminHome>,
+          element: <TeamEdit></TeamEdit>,
+          loader: teamLoaderAuth,
+          action: DeleteACtion,
+        },
+        {
+          path: "newMember",
+          element: <AddMember></AddMember>,
+          action: MemberAction,
           loader: checkAuthToken,
         },
         { path: "login", element: <Login></Login>, action: authAction },
         {
-          path: "team",
-          element: <TeamEdit></TeamEdit>,
+          path: "faculty",
+          element: <FacultyEdit></FacultyEdit>,
           loader: checkAuthToken,
         },
         {

@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
 const User = require("./Model/User");
+const TeamMember = require("./Model/TeamMember");
 
 require("dotenv").config({ paht: "/.env" });
 
@@ -11,12 +12,29 @@ const password = process.env["DATABASE_PASSWORD"];
 
 const MONGODB_URI = `mongodb+srv://${username}:${password}@cluster0.fj5wuhm.mongodb.net/test`;
 const authRoute = require("./Routes/auth");
+const teamRoute = require("./Routes/team");
 
 // const temp = async () => {
 //   try {
 //     await User.create({
 //       email: "trc-head@smail.iitpkd.acin",
 //       password: "trc@123",
+//     });
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+// temp();
+
+// const temp = async () => {
+//   try {
+//     await TeamMember.create({
+//       name: "Shivansh Chaudhary",
+//       role: "Mentor",
+//       image: "https://i.postimg.cc/63D6rsYQ/profile.png",
+//       link1: "Test",
+//       link2: "Test",
+//       link3: "Test",
 //     });
 //   } catch (error) {
 //     console.log(error);
@@ -32,6 +50,7 @@ app.use(
   })
 );
 app.use(authRoute);
+app.use(teamRoute);
 
 mongoose
   .connect(MONGODB_URI)

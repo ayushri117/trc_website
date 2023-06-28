@@ -30,6 +30,14 @@
     cursor: pointer;
 }
 
+.adnavbar_itemBox button{
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 8px;
+    border: none;
+    color: white;
+}
+
 .adnavbar__item
 {
     text-decoration: none;
