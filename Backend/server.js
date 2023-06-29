@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const User = require("./Model/User");
 const TeamMember = require("./Model/TeamMember");
+const Resource = require("./Model/Resource");
 
 require("dotenv").config({ paht: "/.env" });
 
@@ -13,6 +14,7 @@ const password = process.env["DATABASE_PASSWORD"];
 const MONGODB_URI = `mongodb+srv://${username}:${password}@cluster0.fj5wuhm.mongodb.net/test`;
 const authRoute = require("./Routes/auth");
 const teamRoute = require("./Routes/team");
+const resourceRoute = require("./Routes/resource");
 
 // const temp = async () => {
 //   try {
@@ -51,6 +53,7 @@ app.use(
 );
 app.use(authRoute);
 app.use(teamRoute);
+app.use(resourceRoute);
 
 mongoose
   .connect(MONGODB_URI)

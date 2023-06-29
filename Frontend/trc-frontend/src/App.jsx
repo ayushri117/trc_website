@@ -27,7 +27,11 @@ import { loader as teamLoaderAuth } from "./pages/Admin/Team/TeamEdit";
 import FacultyEdit from "./pages/Admin/Faculty/FacultyEdit";
 import AddMember from "./pages/Admin/Team/AddMember";
 import { action as MemberAction } from "./pages/Admin/Team/AddMember";
+import { action as ResourceAction } from "./pages/Admin/Resources/AddResource";
 import { action as DeleteACtion } from "./pages/Admin/Team/TeamEdit";
+import { action as DeleteResAction } from "./pages/Admin/Resources/ResourcesEdit";
+import AddResource from "./pages/Admin/Resources/AddResource";
+import { loader as resourceLoaderAuth } from "./pages/Admin/Resources/ResourcesEdit";
 
 function App() {
   const router = createBrowserRouter([
@@ -67,12 +71,13 @@ function App() {
           action: MemberAction,
           loader: checkAuthToken,
         },
-        { path: "login", element: <Login></Login>, action: authAction },
         {
-          path: "faculty",
-          element: <FacultyEdit></FacultyEdit>,
+          path: "resources/newResource",
+          element: <AddResource></AddResource>,
+          action: ResourceAction,
           loader: checkAuthToken,
         },
+        { path: "login", element: <Login></Login>, action: authAction },
         {
           path: "gallery",
           element: <GalleryEdit></GalleryEdit>,
@@ -85,8 +90,10 @@ function App() {
         },
         {
           path: "resources",
+          id: "resource-edit",
           element: <ResourcesEdit></ResourcesEdit>,
-          loader: checkAuthToken,
+          loader: resourceLoaderAuth,
+          action: DeleteResAction,
         },
         {
           path: "logout",

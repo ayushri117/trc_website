@@ -12,12 +12,7 @@ const AdminNavbar = () => {
       <ul className="adnavbar__box">
         <li className="adnavbar_itemBox">
           <NavLink className="adnavbar__item" to="">
-            Team
-          </NavLink>
-        </li>
-        <li className="adnavbar_itemBox">
-          <NavLink className="adnavbar__item" to="faculty">
-            Faculty
+            TEAM
           </NavLink>
         </li>
         <li className="adnavbar_itemBox">
