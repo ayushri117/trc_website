@@ -90,9 +90,16 @@ export async function action({ request, params }) {
     );
   }
 
+  let isFaculty = false;
+
+  if (data.get("role") === "Faculty") {
+    isFaculty = true;
+  }
+
   const body = {
     name: data.get("name"),
     role: data.get("role"),
+    isFaculty: isFaculty,
     image: data.get("imgLink"),
     link1: data.get("link1"),
     link2: data.get("link2"),

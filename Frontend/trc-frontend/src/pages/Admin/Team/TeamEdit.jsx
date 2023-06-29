@@ -10,43 +10,55 @@ import {
   useLoaderData,
   useSubmit,
   redirect,
+  useRouteLoaderData,
+  useNavigate,
+  Navigate,
 } from "react-router-dom";
 import { Suspense } from "react";
 import "./TeamEdit.css";
 import MemberCardAd from "./MemberCardAd";
 
 const TeamEdit = () => {
-  const data = useLoaderData();
+  const data = useRouteLoaderData("team-edit");
+  const navigate = useNavigate();
 
-  // console.log(data);
+  // console.log(data.teamData);
 
   return (
     <>
-      <Suspense>
-        <Await resolve={data.auth}></Await>
-      </Suspense>
       <Suspense fallback={<p style={{ color: "white" }}>Loading....</p>}>
-        <Await resolve={data.teamData}>
-          <div className="admin_team_container">
-            <div className="admin_team_controls">
-              <Link className="team_route_link" to="/admin">
-                Team
-              </Link>
-              <Link className="team_route_link" to="/admin/newMember">
-                Add Member
-              </Link>
-            </div>
-            {/* <h1>Team Members</h1> */}
-            {data.teamData.map((member) => (
-              <MemberCardAd
-                name={member.name}
-                role={member.role}
-                image={member.image}
-              ></MemberCardAd>
-            ))}
-          </div>
+        <Await resolve={data.auth}>
+          {(token) => (token ? <></> : <Navigate to="/admin/login"></Navigate>)}
         </Await>
       </Suspense>
+      <div className="admin_team_container">
+        <div className="admin_team_controls">
+          <Link className="team_route_link" to="/admin">
+            Team
+          </Link>
+          <Link className="team_route_link" to="/admin/newMember">
+            Add Member
+          </Link>
+        </div>
+        <Suspense fallback={<p style={{ color: "white" }}>Loading....</p>}>
+          <Await resolve={data.teamData}>
+            {(loadedTeamData) =>
+              // console.log(loadedTeamData.length);
+              loadedTeamData.length !== 0 ? (
+                loadedTeamData.map((member) => (
+                  <MemberCardAd
+                    name={member.name}
+                    role={member.role}
+                    image={member.image}
+                  ></MemberCardAd>
+                ))
+              ) : (
+                <p style={{ color: "white" }}>No Team Member Found</p>
+              )
+            }
+          </Await>
+        </Suspense>
+      </div>
     </>
   );
 };
@@ -81,7 +93,7 @@ export async function teamLoader() {
 export async function loader({ request, params }) {
   return defer({
     auth: await authCheck(),
-    teamData: await teamLoader(),
+    teamData: teamLoader(),
   });
 }
 export async function action({ request, params }) {

@@ -10,6 +10,11 @@ const TeamMemberSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  isFaculty: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
   image: {
     type: String,
     default: "https://i.postimg.cc/63D6rsYQ/profile.png",

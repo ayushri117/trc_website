@@ -56,6 +56,7 @@ function App() {
       children: [
         {
           index: true,
+          id: "team-edit",
           element: <TeamEdit></TeamEdit>,
           loader: teamLoaderAuth,
           action: DeleteACtion,
