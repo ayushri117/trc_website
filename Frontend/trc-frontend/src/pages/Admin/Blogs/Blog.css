@@ -42,3 +42,9 @@
     color: #000;
     cursor: pointer;
 }
+
+.blog_previewImage
+{
+    width: 80%;
+    object-fit: contain;
+}

@@ -12,7 +12,15 @@ const blogSchema = new mongoose.Schema({
   },
   auther: {
     type: String,
-    default: null,
+    required: true,
+  },
+  previewImg: {
+    type: String,
+    required: true,
+  },
+  preview: {
+    type: String,
+    required: true,
   },
   info: {
     type: Array,

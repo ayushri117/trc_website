@@ -24,7 +24,7 @@ exports.getTeam = async (req, res, next) => {
 
 exports.postMember = async (req, res, next) => {
   try {
-    const { name, role, imgLink, link1, link2, link3, isFaculty } = req.body;
+    const { name, role, image, link1, link2, link3, isFaculty } = req.body;
     const token = req.headers["auth"];
     console.log(name);
     console.log(role);
@@ -55,7 +55,7 @@ exports.postMember = async (req, res, next) => {
 
     const member = await TeamMember.findOne({ name: name, role: role });
 
-    console.log(member);
+    // console.log(member);
 
     if (!member) {
       console.log("New Member Found");
@@ -64,7 +64,7 @@ exports.postMember = async (req, res, next) => {
         name: name,
         role: role,
         isFaculty: isFaculty,
-        image: imgLink,
+        image: image,
         link1: link1,
         link2: link2,
         link3: link3,

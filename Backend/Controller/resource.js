@@ -25,7 +25,7 @@ exports.getResource = async (req, res, next) => {
 
 exports.postResource = async (req, res, next) => {
   try {
-    const { heading, info, imgLink, link1, link2 } = req.body;
+    const { heading, info, image, link1, link2 } = req.body;
     const token = req.headers["auth"];
     console.log(heading);
     console.log(info);
@@ -62,7 +62,7 @@ exports.postResource = async (req, res, next) => {
       await Resource.create({
         heading: heading,
         info: info,
-        image: imgLink,
+        image: image,
         link1: link1,
         link2: link2,
       });

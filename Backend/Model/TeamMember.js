@@ -17,7 +17,7 @@ const TeamMemberSchema = new mongoose.Schema({
   },
   image: {
     type: String,
-    default: "https://i.postimg.cc/63D6rsYQ/profile.png",
+    default: "https://i.postimg.cc/d0ZbxBsH/profile-blank.png",
   },
   link1: {
     type: String,

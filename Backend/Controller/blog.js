@@ -48,7 +48,7 @@ exports.getBlog = async (req, res, next) => {
 
 exports.postBlog = async (req, res, next) => {
   try {
-    const { title, date, auther } = req.body;
+    const { title, date, auther, previewImage, preview } = req.body;
     const token = req.headers["auth"];
     try {
       const user = await User.findOne({ token: token });
@@ -65,7 +65,7 @@ exports.postBlog = async (req, res, next) => {
       console.log(error);
     }
 
-    if (!(title && date && auther)) {
+    if (!(title && date && auther && previewImage && preview)) {
       console.log("All Feilds Mandatory");
       res.status(201).json({
         status: 201,
@@ -87,7 +87,13 @@ exports.postBlog = async (req, res, next) => {
       let information = [];
 
       for (let i in req.body) {
-        if (i != "title" && i != "date" && i != "auther") {
+        if (
+          i != "title" &&
+          i != "date" &&
+          i != "auther" &&
+          i != "previewImage" &&
+          i != "preview"
+        ) {
           if (i.slice(0, -1) == "para") {
             information.push({ para: req.body[i] });
           } else {
@@ -102,6 +108,8 @@ exports.postBlog = async (req, res, next) => {
         title: title,
         date: date,
         auther: auther,
+        previewImg: previewImage,
+        preview: preview,
         info: information,
       });
 

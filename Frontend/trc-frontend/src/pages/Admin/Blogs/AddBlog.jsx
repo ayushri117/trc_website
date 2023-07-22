@@ -60,6 +60,14 @@ const AddBlog = () => {
         <input type="text" name="title" placeholder="Title*" />
         <input type="text" name="date" placeholder="Date*" />
         <input type="text" name="auther" placeholder="Auther*" />
+        <input type="text" name="previewImage" placeholder="Preview Image*" />
+        <textarea
+          type="text"
+          name="preview"
+          placeholder="Preview Paragraph*"
+          cols={58}
+          rows={10}
+        />
         <div id="add_blog"></div>
         <button disabled={isSubmitting} className="team_form_button">
           {isSubmitting ? "Adding..." : "Add Blog"}
@@ -80,7 +88,13 @@ export async function action({ request, params }) {
   const data = await request.formData();
   //   console.log(data.getAll);
 
-  if (!data.get("title") || !data.get("date") || !data.get("auther")) {
+  if (
+    !data.get("title") ||
+    !data.get("date") ||
+    !data.get("auther") ||
+    !data.get("previewImage") ||
+    !data.get("preview")
+  ) {
     return json(
       { error: true, message: "All feilds are Mandatory" },
       { status: 500 }

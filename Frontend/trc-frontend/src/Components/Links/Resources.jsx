@@ -7,6 +7,8 @@ import electronics from "../../assets/electronics.jpg";
 import { FaGoogleDrive } from "react-icons/fa";
 import { AiOutlineLink } from "react-icons/ai";
 import { motion } from "framer-motion";
+import { useLoaderData, redirect, json } from "react-router-dom";
+import axios from "axios";
 
 const resourceVariants = {
   hidden: {
@@ -57,6 +59,7 @@ const cardImage = {
 // };
 
 const Resources = () => {
+  const data = useLoaderData();
   return (
     <motion.div
       className="card-container"
@@ -64,120 +67,30 @@ const Resources = () => {
       initial="hidden"
       animate="animate"
     >
-      <motion.div
-        className="card"
-        variants={resourceVariants}
-        initial="hidden"
-        animate="animate"
-        whileHover="hover"
-      >
-        <motion.img
-          src={pcb}
-          alt="Card"
-          className="card-image"
-          variants={cardImage}
-        />
-        <motion.div className="card-content">
-          <motion.h2 className="card-title">PCB Designing</motion.h2>
-          <motion.p className="card-subtitle">
-            some good resources to start with.
-          </motion.p>
-          <div className="icons-container">
-            <FaGoogleDrive size={25} className="icons" />
-            <AiOutlineLink size={25} className="icons" />
-          </div>
+      {data.map((item) => (
+        <motion.div
+          className="card"
+          variants={resourceVariants}
+          initial="hidden"
+          animate="animate"
+          whileHover="hover"
+        >
+          <motion.img
+            src={item.image}
+            alt="Card"
+            className="card-image"
+            variants={cardImage}
+          />
+          <motion.div className="card-content">
+            <motion.h2 className="card-title">{item.heading}</motion.h2>
+            <motion.p className="card-subtitle">{item.info}</motion.p>
+            <div className="icons-container">
+              <FaGoogleDrive size={25} className="icons" />
+              <AiOutlineLink size={25} className="icons" />
+            </div>
+          </motion.div>
         </motion.div>
-      </motion.div>
-      <motion.div
-        className="card"
-        variants={resourceVariants}
-        initial="hidden"
-        animate="animate"
-        whileHover="hover"
-      >
-        <motion.img
-          src={arduino}
-          alt="Card"
-          className="card-image"
-          variants={cardImage}
-        />
-        <motion.div className="card-content">
-          <motion.h2 className="card-title">Arduino </motion.h2>
-          <motion.p className="card-subtitle">
-            some good resources to start with.
-          </motion.p>
-          <div className="icons-container">
-            <FaGoogleDrive size={25} className="icons" />
-            <AiOutlineLink size={25} className="icons" />
-          </div>
-        </motion.div>
-      </motion.div>
-      <motion.div
-        className="card"
-        variants={resourceVariants}
-        initial="hidden"
-        animate="animate"
-        whileHover="hover"
-      >
-        <motion.img
-          src={pi}
-          alt="Card"
-          className="card-image"
-          variants={cardImage}
-        />
-        <motion.div className="card-content">
-          <h2 className="card-title">Raspberry Pi</h2>
-          <p className="card-subtitle">Some good resources to start with.</p>
-          <div className="icons-container">
-            <FaGoogleDrive size={25} className="icons" />
-            <AiOutlineLink size={25} className="icons" />
-          </div>
-        </motion.div>
-      </motion.div>
-      <motion.div
-        className="card"
-        variants={resourceVariants}
-        initial="hidden"
-        animate="animate"
-        whileHover="hover"
-      >
-        <motion.img
-          src={battery}
-          alt="Card"
-          className="card-image"
-          variants={cardImage}
-        />
-        <motion.div className="card-content">
-          <h2 className="card-title">Batteries</h2>
-          <p className="card-subtitle">some good resources to start with.</p>
-          <div className="icons-container">
-            <FaGoogleDrive size={25} className="icons" />
-            <AiOutlineLink size={25} className="icons" />
-          </div>
-        </motion.div>
-      </motion.div>
-      <motion.div
-        className="card"
-        variants={resourceVariants}
-        initial="hidden"
-        animate="animate"
-        whileHover="hover"
-      >
-        <motion.img
-          src={electronics}
-          alt="Card"
-          className="card-image"
-          variants={cardImage}
-        />
-        <motion.div className="card-content">
-          <h2 className="card-title">Basic Electronics</h2>
-          <p className="card-subtitle">some good resources to start with.</p>
-          <div className="icons-container">
-            <FaGoogleDrive size={25} className="icons" />
-            <AiOutlineLink size={25} className="icons" />
-          </div>
-        </motion.div>
-      </motion.div>
+      ))}
     </motion.div>
   );
 };

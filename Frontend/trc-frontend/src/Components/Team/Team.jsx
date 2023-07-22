@@ -7,7 +7,8 @@ import faculty1 from "../../assets/faculty1.jpg";
 import faculty2 from "../../assets/faculty2.jpg";
 import faculty3 from "../../assets/faculty3.jpg";
 import { motion, useInView, useAnimation } from "framer-motion";
-
+import { useLoaderData, redirect, json } from "react-router-dom";
+import axios from "axios";
 
 const Team = () => {
   let ref1 = useRef(null);
@@ -16,6 +17,7 @@ const Team = () => {
   let inView2 = useInView(ref2, { once: false });
   let facultyControl = useAnimation();
   let memberControl = useAnimation();
+  const data = useLoaderData();
 
   useEffect(() => {
     if (inView1) {
@@ -54,27 +56,19 @@ const Team = () => {
           FACULTY
         </motion.h1>
         <div className="team_faculty_container" ref={ref1}>
-          <MemberCard
-            control={facultyControl}
-            profileImage={faculty1}
-            name="Santhakumar Mohan"
-            role="Faculty"
-            delay={0}
-          ></MemberCard>
-          <MemberCard
-            control={facultyControl}
-            profileImage={faculty2}
-            name="Vijay Murlidharan"
-            role="Faculty"
-            delay={0.2}
-          ></MemberCard>
-          <MemberCard
-            control={facultyControl}
-            profileImage={faculty3}
-            name="Sneha Gajbhiye"
-            role="Faculty"
-            delay={0.4}
-          ></MemberCard>
+          {data.map((item) => {
+            if (item.isFaculty) {
+              return (
+                <MemberCard
+                  control={facultyControl}
+                  profileImage={item.image}
+                  name={item.name}
+                  role="Faculty"
+                  delay={0}
+                ></MemberCard>
+              );
+            }
+          })}
         </div>
         <motion.h1
           className="team_heading"
@@ -98,20 +92,19 @@ const Team = () => {
           TEAM
         </motion.h1>
         <div className="team_mem_members" ref={ref2}>
-          <MemberCard
-            control={memberControl}
-            profileImage={headProfile}
-            name="Ayush Singh"
-            role="Club Head"
-            delay={0}
-          ></MemberCard>
-          <MemberCard
-            control={memberControl}
-            profileImage={blankProfile}
-            name="Shivansh Chaudhary"
-            role="Mentor"
-            delay={0.2}
-          ></MemberCard>
+          {data.map((item) => {
+            if (!item.isFaculty) {
+              return (
+                <MemberCard
+                  control={memberControl}
+                  profileImage={item.image}
+                  name={item.name}
+                  role={item.role}
+                  delay={0}
+                ></MemberCard>
+              );
+            }
+          })}
         </div>
       </motion.div>
     </div>
@@ -119,3 +112,22 @@ const Team = () => {
 };
 
 export default Team;
+
+export async function loader() {
+  const headers = {
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+  };
+
+  const response = await axios.get("http://localhost:4000/team", {
+    headers: headers,
+  });
+
+  if (response.status === 500) {
+    return json({ error: true, message: "Server Error" }, { status: 500 });
+  }
+
+  const resData = await response.data.team;
+
+  return resData;
+}
