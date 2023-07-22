@@ -1,0 +1,30 @@
+.Full_Blog_Container
+{
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+}
+
+.Full_Blog_para
+{
+    color: white;
+}
+
+.Full_Blog_img
+{
+    width: 100%;
+    object-fit: contain;
+    margin: 10px 0px;
+}
+
+.Full_blog_btn
+{
+    width: 100px;
+    padding: 10px;
+    text-decoration: none;
+    background-color: #a3a1a1;
+    color: #000;
+    cursor: pointer;
+    margin: 20px;
+    align-self: center;
+}

@@ -36,13 +36,13 @@ const AddResource = () => {
           {data && data.error && <p>{data.message}</p>}
           <input
             type="text"
-            placeholder="Heading"
+            placeholder="Heading*"
             className="resource_form_input"
             name="heading"
           />
           <input
             type="text"
-            placeholder="Info"
+            placeholder="Info*"
             name="info"
             className="resource_form_input"
           />

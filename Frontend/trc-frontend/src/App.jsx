@@ -32,6 +32,13 @@ import { action as DeleteACtion } from "./pages/Admin/Team/TeamEdit";
 import { action as DeleteResAction } from "./pages/Admin/Resources/ResourcesEdit";
 import AddResource from "./pages/Admin/Resources/AddResource";
 import { loader as resourceLoaderAuth } from "./pages/Admin/Resources/ResourcesEdit";
+import FullBlog from "./pages/Admin/Blogs/FullBlog";
+import Blogs from "./pages/Admin/Blogs/Blogs";
+import AddBlog from "./pages/Admin/Blogs/AddBlog";
+import { action as BlogAction } from "./pages/Admin/Blogs/AddBlog";
+import { loader as blogLoaderAuth } from "./pages/Admin/Blogs/Blogs";
+import { loader as blogLoader } from "./pages/Admin/Blogs/FullBlog";
+import { action as DeleteBlogAction } from "./pages/Admin/Blogs/BlogsEdit";
 
 function App() {
   const router = createBrowserRouter([
@@ -85,8 +92,19 @@ function App() {
         },
         {
           path: "blogs",
+          id: "blog-edit",
           element: <BlogsEdit></BlogsEdit>,
           loader: checkAuthToken,
+          action: DeleteBlogAction,
+          children: [
+            {
+              path: "view/:blogid",
+              element: <FullBlog></FullBlog>,
+              loader: blogLoader,
+            },
+            { index: true, element: <Blogs></Blogs>, loader: blogLoaderAuth },
+            { path: "new", element: <AddBlog></AddBlog>, action: BlogAction },
+          ],
         },
         {
           path: "resources",
