@@ -96,6 +96,8 @@ exports.postBlog = async (req, res, next) => {
         ) {
           if (i.slice(0, -1) == "para") {
             information.push({ para: req.body[i] });
+          } else if (i.slice(0, -1) == "subHeading") {
+            information.push({ subHeading: req.body[i] });
           } else {
             information.push({ img: req.body[i] });
           }
