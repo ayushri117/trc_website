@@ -3,6 +3,8 @@ import axios from "axios";
 import styles from "../selector.module.css";
 import { useLoaderData } from "react-router-dom";
 import { Link } from "react-router-dom";
+import BlogCard from "./BlogCard";
+import "./Blog.css";
 
 const api = import.meta.env.VITE_NEWSKEY2;
 const searchWord = "robotics";
@@ -31,30 +33,9 @@ const BlogVideo = () => {
   const blogs = useLoaderData();
   console.log(blogs);
   return (
-    <div style={{ paddingTop: "100px" }}>
+    <div style={{ paddingTop: "100px" }} className="Blogs_Main_Container">
       {blogs.map((item) => (
-        <div key={item.keyId} className={styles.blogContainer}>
-          <img
-            src={item.previewImg}
-            alt="blog Image"
-            className={styles.blogImage}
-          />
-          <div className={styles.blogContent}>
-            <div>
-              <h2 className={styles.title}>{item.title}</h2>
-            </div>
-            <div className={styles.blogInfo}>
-              <h6>{item.date}</h6>
-              <h5>by:- {item.auther}</h5>
-            </div>
-            <div>
-              <p className={styles.blogDescription}>{item.preview}</p>
-              <Link to={`${item._id}`} className={styles.blogLink}>
-                Know More
-              </Link>
-            </div>
-          </div>
-        </div>
+        <BlogCard data={item}></BlogCard>
       ))}
     </div>
   );

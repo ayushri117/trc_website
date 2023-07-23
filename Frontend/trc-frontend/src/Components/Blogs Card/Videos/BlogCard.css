@@ -1,0 +1,85 @@
+.Blog_Card_Container
+{
+    width: 380px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 16px;
+    /* border: white solid 1px; */
+    padding: 20px;
+    background-color:#19191fc6;
+    box-shadow: inset 0 0 0.5px 1px hsla(0, 0%,  
+              100%, 0.075),
+              /* shadow ring 👇 */
+              0 0 0 1px hsla(0, 0%, 0%, 0.05),
+              /* multiple soft shadows 👇 */
+              0 0.3px 0.4px hsla(0, 0%, 0%, 0.02),
+              0 0.9px 1.5px hsla(0, 0%, 0%, 0.045),
+              0 3.5px 6px hsla(0, 0%, 0%, 0.09);
+    text-decoration: none;
+}
+
+.Blog_Card_Container img
+{
+    width: 100%;
+    height: 50%;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+.Blog_Card_Container .Blog_Card_Content
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-grow: 1;
+    justify-content: space-around;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.Blog_Card_Content *
+{
+    margin: 0;
+    padding: 2px 0px;
+}
+
+.Blog_Card_Content h3
+{
+    color: white;  
+    text-transform: uppercase;
+    font-size:1.5rem;
+}
+
+.Blog_Card_Content h5
+{
+    color:#8E96A4; 
+    font-size:0.8rem; 
+}
+
+.Blog_Card_Content p
+{
+    color:#B0B5C0;
+    font-size:1rem; 
+}
+
+.cuttoff-text
+{
+    --max-lines: 3;
+    --line-height:1.4;
+
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: var(--max-lines);
+}
+
+
+.Blog_Card_Content h4
+{
+    color: #788192;
+    font-size:1.2rem; 
+}

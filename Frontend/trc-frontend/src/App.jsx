@@ -42,6 +42,8 @@ import { action as DeleteBlogAction } from "./pages/Admin/Blogs/BlogsEdit";
 import { loader as blogsLoader } from "./Components/Team/Team";
 import { resourceLoader as ResourceLoader } from "./pages/Admin/Resources/ResourcesEdit";
 import { blogLoader as BlogsLoader } from "./pages/Admin/Blogs/Blogs";
+import SingleBlog from "./Components/Blogs Card/Videos/SingleBlog";
+import BlogOutlet from "./Components/Blogs Card/Videos/BlogOutlet";
 
 function App() {
   const router = createBrowserRouter([
@@ -60,7 +62,18 @@ function App() {
         { path: "gallery", element: <GalleryPage /> },
         { path: "team", element: <TeamPage /> },
         { path: "contactUs", element: <ContactPage /> },
-        { path: "blog", element: <BlogVideo />, loader: BlogsLoader },
+        {
+          path: "blog",
+          element: <BlogOutlet></BlogOutlet>,
+          children: [
+            {
+              index: true,
+              element: <BlogVideo></BlogVideo>,
+              loader: BlogsLoader,
+            },
+            { path: ":blogid", element: <SingleBlog></SingleBlog> },
+          ],
+        },
         { path: "tutorial", element: <TutorialVideo /> },
         { path: "lecture", element: <LectureVideo /> },
       ],

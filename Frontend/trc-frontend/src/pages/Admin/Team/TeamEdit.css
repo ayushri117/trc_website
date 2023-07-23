@@ -17,6 +17,7 @@
     justify-content: flex-start;
     gap: 20px;
     width: 400px;   
+    margin: 20px;
 }
 
 .admin_team_imagebox
@@ -60,3 +61,13 @@
     color: white;
     cursor: pointer;
 }   
+
+.TeamData_Container
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 20px auto;
+}

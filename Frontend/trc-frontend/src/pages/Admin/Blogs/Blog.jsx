@@ -2,10 +2,24 @@ import React from "react";
 import { useState } from "react";
 import "./Blog.css";
 import { Link } from "react-router-dom";
-
+import { motion } from "framer-motion";
 const Blog = ({ data }) => {
   return (
-    <div className="blog_box">
+    <motion.div
+      className="blog_box"
+      initial={{
+        y: 30,
+        opacity: 0,
+      }}
+      animate={{
+        y: 0,
+        opacity: 1,
+        transition: {
+          ease: [0.6, 0.05, 0.01, 0.98],
+          duration: 1.6,
+        },
+      }}
+    >
       <h2 className="blog_title">{data.title}</h2>
       <div className="blog_subInfo">
         <h5 className="subinfo_text">Date - {data.date}</h5>
@@ -16,7 +30,7 @@ const Blog = ({ data }) => {
       <Link className="blog_btn" to={`view/${data._id}`}>
         View
       </Link>
-    </div>
+    </motion.div>
   );
 };
 

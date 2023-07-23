@@ -40,24 +40,26 @@ const TeamEdit = () => {
             Add Member
           </Link>
         </div>
-        <Suspense fallback={<p style={{ color: "white" }}>Loading....</p>}>
-          <Await resolve={data.teamData}>
-            {(loadedTeamData) =>
-              // console.log(loadedTeamData.length);
-              loadedTeamData.length !== 0 ? (
-                loadedTeamData.map((member) => (
-                  <MemberCardAd
-                    name={member.name}
-                    role={member.role}
-                    image={member.image}
-                  ></MemberCardAd>
-                ))
-              ) : (
-                <p style={{ color: "white" }}>No Team Member Found</p>
-              )
-            }
-          </Await>
-        </Suspense>
+        <div className="TeamData_Container">
+          <Suspense fallback={<p style={{ color: "white" }}>Loading....</p>}>
+            <Await resolve={data.teamData}>
+              {(loadedTeamData) =>
+                // console.log(loadedTeamData.length);
+                loadedTeamData.length !== 0 ? (
+                  loadedTeamData.map((member) => (
+                    <MemberCardAd
+                      name={member.name}
+                      role={member.role}
+                      image={member.image}
+                    ></MemberCardAd>
+                  ))
+                ) : (
+                  <p style={{ color: "white" }}>No Team Member Found</p>
+                )
+              }
+            </Await>
+          </Suspense>
+        </div>
       </div>
     </>
   );

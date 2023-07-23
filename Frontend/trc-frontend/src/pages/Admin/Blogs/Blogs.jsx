@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 import { getAuthToken } from "../../../../util/auth";
 import axios from "axios";
+import { AnimatePresence } from "framer-motion";
 
 const Blogs = () => {
   const data = useLoaderData();
@@ -21,9 +22,11 @@ const Blogs = () => {
   }
   return (
     <div className="admin_blogs">
-      {data.blogData.map((blog) => (
-        <Blog data={blog}></Blog>
-      ))}
+      <AnimatePresence>
+        {data.blogData.map((blog) => (
+          <Blog data={blog}></Blog>
+        ))}
+      </AnimatePresence>
     </div>
   );
 };

@@ -14,6 +14,7 @@ import axios from "axios";
 const AddBlog = () => {
   const [para, setPara] = useState(0);
   const [img, setImg] = useState(0);
+  const [subHeading, setSubHeading] = useState(0);
 
   const addPara = () => {
     setPara((prev) => prev + 1);
@@ -35,6 +36,16 @@ const AddBlog = () => {
     imgInput.placeholder = "add Image Link";
     imgInput.name = "image" + `${img}`;
     div.appendChild(imgInput);
+  };
+
+  const addSubHeading = () => {
+    setSubHeading((prev) => prev + 1);
+    let div = document.querySelector("#add_blog");
+    let subHeadingInput = document.createElement("input");
+    subHeadingInput.type = "text";
+    subHeadingInput.placeholder = "Add Sub Heading";
+    subHeadingInput.name = "subHeading" + `${subHeading}`;
+    div.appendChild(subHeadingInput);
   };
 
   const removeHandler = () => {
@@ -74,6 +85,7 @@ const AddBlog = () => {
         </button>
       </Form>
       <div className="footer_btn">
+        <button onClick={addSubHeading}>Add Sub Heading</button>
         <button onClick={addPara}>Add Paragraph</button>
         <button onClick={addImage}>Add Image</button>
         <button onClick={removeHandler}>Remove</button>

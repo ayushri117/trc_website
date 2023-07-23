@@ -6,7 +6,7 @@ import battery from "../../assets/battery.jpg";
 import electronics from "../../assets/electronics.jpg";
 import { FaGoogleDrive } from "react-icons/fa";
 import { AiOutlineLink } from "react-icons/ai";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useLoaderData, redirect, json } from "react-router-dom";
 import axios from "axios";
 
@@ -61,37 +61,39 @@ const cardImage = {
 const Resources = () => {
   const data = useLoaderData();
   return (
-    <motion.div
-      className="card-container"
-      variants={container}
-      initial="hidden"
-      animate="animate"
-    >
-      {data.map((item) => (
-        <motion.div
-          className="card"
-          variants={resourceVariants}
-          initial="hidden"
-          animate="animate"
-          whileHover="hover"
-        >
-          <motion.img
-            src={item.image}
-            alt="Card"
-            className="card-image"
-            variants={cardImage}
-          />
-          <motion.div className="card-content">
-            <motion.h2 className="card-title">{item.heading}</motion.h2>
-            <motion.p className="card-subtitle">{item.info}</motion.p>
-            <div className="icons-container">
-              <FaGoogleDrive size={25} className="icons" />
-              <AiOutlineLink size={25} className="icons" />
-            </div>
+    <AnimatePresence>
+      <motion.div
+        className="card-container"
+        variants={container}
+        initial="hidden"
+        animate="animate"
+      >
+        {data.map((item) => (
+          <motion.div
+            className="card"
+            variants={resourceVariants}
+            initial="hidden"
+            animate="animate"
+            whileHover="hover"
+          >
+            <motion.img
+              src={item.image}
+              alt="Card"
+              className="card-image"
+              variants={cardImage}
+            />
+            <motion.div className="card-content">
+              <motion.h2 className="card-title">{item.heading}</motion.h2>
+              <motion.p className="card-subtitle">{item.info}</motion.p>
+              <div className="icons-container">
+                <FaGoogleDrive size={25} className="icons" />
+                <AiOutlineLink size={25} className="icons" />
+              </div>
+            </motion.div>
           </motion.div>
-        </motion.div>
-      ))}
-    </motion.div>
+        ))}
+      </motion.div>
+    </AnimatePresence>
   );
 };
 

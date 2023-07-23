@@ -36,6 +36,8 @@ const FullBlog = () => {
       {data[0].info.map((item) => {
         if (item.para) {
           return <p className="Full_Blog_para">{item.para}</p>;
+        } else if (item.subHeading) {
+          return <h2 className="Full_Blog_subHeading">{item.subHeading}</h2>;
         } else {
           return <img className="Full_Blog_img" src={item.img} alt="" />;
         }
