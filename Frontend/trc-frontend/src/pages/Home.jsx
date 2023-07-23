@@ -1,17 +1,17 @@
-
-import Hero from "../Components/Hero/Hero"
-import AboutUs from "../Components/AboutUs/AboutUs"
-import Team from "../Components/Team/Team"
-import Contact from "../Components/Contact/Contact"
+import Hero from "../Components/Hero/Hero";
+import AboutUs from "../Components/AboutUs/AboutUs";
+import Team from "../Components/Team/Team";
+import Contact from "../Components/Contact/Contact";
+import "./Home.css";
 const Homepage = () => {
-    return (
-        <>
-            <Hero></Hero>
-            <AboutUs></AboutUs>
-            <Team></Team>
-            <Contact></Contact>
-        </>
-    )
-}
+  return (
+    <div className="Main_Container_Web">
+      <Hero></Hero>
+      <AboutUs></AboutUs>
+      <Team></Team>
+      <Contact></Contact>
+    </div>
+  );
+};
 
 export default Homepage;
