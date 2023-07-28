@@ -26,6 +26,10 @@ const blogSchema = new mongoose.Schema({
     type: Array,
     default: [],
   },
+  resourceRef: {
+    type: Schema.Types.ObjectId,
+    ref: "ResourceCollection",
+  },
 });
 
 module.exports = mongoose.model("Blog", blogSchema);

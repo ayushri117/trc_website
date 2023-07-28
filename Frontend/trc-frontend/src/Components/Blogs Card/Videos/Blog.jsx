@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import styles from "../selector.module.css";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import BlogCard from "./BlogCard";
 import "./Blog.css";
@@ -25,6 +25,15 @@ const BlogVideo = () => {
     }
   };
 
+  const checkResourceId = (blog) => {
+    const location = useLocation();
+
+    let path = location.pathname;
+    let keyword = path.split("/");
+
+    return blog.resourceRef === keyword[2];
+  };
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -34,8 +43,10 @@ const BlogVideo = () => {
   console.log(blogs);
   return (
     <div style={{ paddingTop: "100px" }} className="Blogs_Main_Container">
-      {blogs.map((item) => (
-        <BlogCard data={item}></BlogCard>
+      {blogs.filter(checkResourceId).map((item) => (
+        <>
+          <BlogCard data={item}></BlogCard>
+        </>
       ))}
     </div>
   );

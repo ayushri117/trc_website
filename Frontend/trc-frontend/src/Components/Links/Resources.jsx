@@ -7,7 +7,13 @@ import electronics from "../../assets/electronics.jpg";
 import { FaGoogleDrive } from "react-icons/fa";
 import { AiOutlineLink } from "react-icons/ai";
 import { AnimatePresence, motion } from "framer-motion";
-import { useLoaderData, redirect, json } from "react-router-dom";
+import {
+  useLoaderData,
+  redirect,
+  json,
+  Navigate,
+  useNavigate,
+} from "react-router-dom";
 import axios from "axios";
 
 const resourceVariants = {
@@ -60,6 +66,7 @@ const cardImage = {
 
 const Resources = () => {
   const data = useLoaderData();
+  const navigate = useNavigate();
   return (
     <AnimatePresence>
       <motion.div
@@ -86,8 +93,7 @@ const Resources = () => {
               <motion.h2 className="card-title">{item.heading}</motion.h2>
               <motion.p className="card-subtitle">{item.info}</motion.p>
               <div className="icons-container">
-                <FaGoogleDrive size={25} className="icons" />
-                <AiOutlineLink size={25} className="icons" />
+                <button onClick={() => navigate(`${item._id}`)}>Explore</button>
               </div>
             </motion.div>
           </motion.div>

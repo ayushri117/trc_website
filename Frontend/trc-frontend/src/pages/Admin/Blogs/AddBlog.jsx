@@ -10,11 +10,13 @@ import {
 } from "react-router-dom";
 import { getAuthToken } from "../../../../util/auth";
 import axios from "axios";
+import { useEffect } from "react";
 
 const AddBlog = () => {
   const [para, setPara] = useState(0);
   const [img, setImg] = useState(0);
   const [subHeading, setSubHeading] = useState(0);
+  const [rescorceOption, setRecourceOption] = useState([]);
 
   const addPara = () => {
     setPara((prev) => prev + 1);
@@ -61,6 +63,33 @@ const AddBlog = () => {
     // div.removeChild(div.lastChild);
   };
 
+  useEffect(() => {
+    getResources();
+  }, []);
+
+  const getResources = async () => {
+    const headers = {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    };
+
+    const response = await axios.get("http://localhost:4000/resource", {
+      headers: headers,
+    });
+
+    let option = [];
+    for (let i of response.data.resource) {
+      let temp = {
+        value: i._id,
+        name: i.heading,
+      };
+      // console.log(temp);
+      option.push(temp);
+    }
+
+    setRecourceOption(option);
+  };
+
   const data = useActionData();
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
@@ -79,6 +108,11 @@ const AddBlog = () => {
           cols={58}
           rows={10}
         />
+        <select name="resource" id="resource" className="blog_dropdown">
+          {rescorceOption.map((resource) => (
+            <option value={`${resource.value}`}>{resource.name}</option>
+          ))}
+        </select>
         <div id="add_blog"></div>
         <button disabled={isSubmitting} className="team_form_button">
           {isSubmitting ? "Adding..." : "Add Blog"}
@@ -98,7 +132,7 @@ export default AddBlog;
 
 export async function action({ request, params }) {
   const data = await request.formData();
-  //   console.log(data.getAll);
+  // console.log(data.get("resource"));
 
   if (
     !data.get("title") ||
@@ -121,7 +155,7 @@ export async function action({ request, params }) {
     // console.log(name);
   }
 
-  console.log(body);
+  // console.log(body);
 
   //   const body = {
   //     name: data.get("name"),

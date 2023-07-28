@@ -44,6 +44,7 @@ import { resourceLoader as ResourceLoader } from "./pages/Admin/Resources/Resour
 import { blogLoader as BlogsLoader } from "./pages/Admin/Blogs/Blogs";
 import SingleBlog from "./Components/Blogs Card/Videos/SingleBlog";
 import BlogOutlet from "./Components/Blogs Card/Videos/BlogOutlet";
+import ResourceOutlet from "./Components/Links/ResourceOutlet";
 
 function App() {
   const router = createBrowserRouter([
@@ -54,28 +55,31 @@ function App() {
         { index: true, element: <Homepage />, loader: blogsLoader },
         {
           path: "resources",
-          element: <ResourcesPage />,
-          loader: ResourceLoader,
-        },
-        { path: "about", element: <AboutPage /> },
-        { path: "blogs", element: <BlogsPage /> },
-        { path: "gallery", element: <GalleryPage /> },
-        { path: "team", element: <TeamPage /> },
-        { path: "contactUs", element: <ContactPage /> },
-        {
-          path: "blog",
-          element: <BlogOutlet></BlogOutlet>,
+          element: <ResourceOutlet></ResourceOutlet>,
           children: [
             {
               index: true,
-              element: <BlogVideo></BlogVideo>,
-              loader: BlogsLoader,
+              element: <ResourcesPage></ResourcesPage>,
+              loader: ResourceLoader,
             },
-            { path: ":blogid", element: <SingleBlog></SingleBlog> },
+            {
+              path: ":resourceid",
+              element: <BlogOutlet></BlogOutlet>,
+              children: [
+                {
+                  index: true,
+                  element: <BlogVideo></BlogVideo>,
+                  loader: BlogsLoader,
+                },
+                { path: ":blogid", element: <SingleBlog></SingleBlog> },
+              ],
+            },
           ],
         },
-        { path: "tutorial", element: <TutorialVideo /> },
-        { path: "lecture", element: <LectureVideo /> },
+        { path: "about", element: <AboutPage /> },
+        { path: "gallery", element: <GalleryPage /> },
+        { path: "team", element: <TeamPage /> },
+        { path: "contactUs", element: <ContactPage /> },
       ],
     },
     {

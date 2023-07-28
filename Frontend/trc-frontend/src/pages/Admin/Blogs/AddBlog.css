@@ -12,6 +12,12 @@
     color: white;
 }
 
+.blog_dropdown
+{
+    width: 100%;
+    padding: 10px;
+}
+
 .blog_form
 {
     display: flex;

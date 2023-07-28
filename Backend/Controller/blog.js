@@ -48,7 +48,7 @@ exports.getBlog = async (req, res, next) => {
 
 exports.postBlog = async (req, res, next) => {
   try {
-    const { title, date, auther, previewImage, preview } = req.body;
+    const { title, date, auther, previewImage, preview, resource } = req.body;
     const token = req.headers["auth"];
     try {
       const user = await User.findOne({ token: token });
@@ -92,7 +92,8 @@ exports.postBlog = async (req, res, next) => {
           i != "date" &&
           i != "auther" &&
           i != "previewImage" &&
-          i != "preview"
+          i != "preview" &&
+          i != "resource"
         ) {
           if (i.slice(0, -1) == "para") {
             information.push({ para: req.body[i] });
@@ -113,6 +114,7 @@ exports.postBlog = async (req, res, next) => {
         previewImg: previewImage,
         preview: preview,
         info: information,
+        resourceRef: resource,
       });
 
       res.status(200).json({
