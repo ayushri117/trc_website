@@ -53,3 +53,61 @@
     margin-left: 32px;
     flex-wrap: wrap;
 }
+
+.mem_skeleton_info
+{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.mem_skeleton_name
+{
+    position: absolute;
+    width: 150px;
+    top: 300px;
+    left: 32%;
+}
+
+.mem_skeleton_role
+{
+    position: absolute;
+    width: 150px;
+    top: 370px;
+    left: 32%;
+}
+
+.mem_links_Skeleton
+{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+    justify-content: space-around;
+    position: absolute;
+    top: 420px;
+}
+
+.mem_skeleton_img
+{
+    position: absolute;
+    top: 50px;
+    left: 28%;
+}
+
+.memCard_container_Skeleton
+{
+    position: relative;
+    width:450px;
+    height: 512px;
+    border: 1px solid;
+    border-color: #202328;
+    border-radius: 20px;  
+    padding-inline: 0.5rem;
+    margin-bottom: 50px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    background: linear-gradient(135deg , rgba(20, 24, 26, 1) , rgba(255,255,255,0));
+    transition: all 0.5s ease;
+}

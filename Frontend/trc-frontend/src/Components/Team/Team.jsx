@@ -6,9 +6,14 @@ import blankProfile from "../../assets/profile_blank.png";
 import faculty1 from "../../assets/faculty1.jpg";
 import faculty2 from "../../assets/faculty2.jpg";
 import faculty3 from "../../assets/faculty3.jpg";
+import { Phone } from "feather-icons-react/build/IconComponents";
+import { Mail } from "feather-icons-react/build/IconComponents";
+import { Linkedin } from "feather-icons-react/build/IconComponents";
 import { motion, useInView, useAnimation } from "framer-motion";
-import { useLoaderData, redirect, json } from "react-router-dom";
+import { useLoaderData, redirect, json, Await, defer } from "react-router-dom";
 import axios from "axios";
+import Skeleton from "react-loading-skeleton";
+import { Suspense } from "react";
 
 const Team = () => {
   let ref1 = useRef(null);
@@ -56,19 +61,38 @@ const Team = () => {
           FACULTY
         </motion.h1>
         <div className="team_faculty_container" ref={ref1}>
-          {data.map((item) => {
-            if (item.isFaculty) {
-              return (
-                <MemberCard
-                  control={facultyControl}
-                  profileImage={item.image}
-                  name={item.name}
-                  role="Faculty"
-                  delay={0}
-                ></MemberCard>
-              );
+          <Suspense
+            fallback={
+              <>
+                <TeamSkeleton></TeamSkeleton>
+                <TeamSkeleton></TeamSkeleton>
+                <TeamSkeleton></TeamSkeleton>
+              </>
             }
-          })}
+          >
+            <Await resolve={data.TeamData}>
+              {(loadedTeam) =>
+                // console.log(loadedTeamData.length);
+                loadedTeam.length !== 0 ? (
+                  loadedTeam.map((item) => {
+                    if (item.isFaculty) {
+                      return (
+                        <MemberCard
+                          control={facultyControl}
+                          profileImage={item.image}
+                          name={item.name}
+                          role={item.role}
+                          delay={0}
+                        ></MemberCard>
+                      );
+                    }
+                  })
+                ) : (
+                  <p style={{ color: "white" }}>No Resources Found</p>
+                )
+              }
+            </Await>
+          </Suspense>
         </div>
         <motion.h1
           className="team_heading"
@@ -92,28 +116,70 @@ const Team = () => {
           TEAM
         </motion.h1>
         <div className="team_mem_members" ref={ref2}>
-          {data.map((item) => {
-            if (!item.isFaculty) {
-              return (
-                <MemberCard
-                  control={memberControl}
-                  profileImage={item.image}
-                  name={item.name}
-                  role={item.role}
-                  delay={0}
-                ></MemberCard>
-              );
+          <Suspense
+            fallback={
+              <>
+                <TeamSkeleton></TeamSkeleton>
+                <TeamSkeleton></TeamSkeleton>
+                <TeamSkeleton></TeamSkeleton>
+              </>
             }
-          })}
+          >
+            <Await resolve={data.TeamData}>
+              {(loadedTeam) =>
+                // console.log(loadedTeamData.length);
+                loadedTeam.length !== 0 ? (
+                  loadedTeam.map((item) => {
+                    if (!item.isFaculty) {
+                      return (
+                        <MemberCard
+                          control={facultyControl}
+                          profileImage={item.image}
+                          name={item.name}
+                          role={item.role}
+                          delay={0}
+                        ></MemberCard>
+                      );
+                    }
+                  })
+                ) : (
+                  <p style={{ color: "white" }}>No Resources Found</p>
+                )
+              }
+            </Await>
+          </Suspense>
         </div>
       </motion.div>
     </div>
   );
 };
 
+const TeamSkeleton = () => {
+  return (
+    <div className="memCard_container_Skeleton" id="memCard_container">
+      <div className="mem_skeleton_img">
+        <Skeleton circle height={200} width={200}></Skeleton>
+      </div>
+
+      <div className="mem_skeleton_name">
+        <Skeleton height={24}></Skeleton>
+      </div>
+      <div className="mem_skeleton_role">
+        <Skeleton height={19}></Skeleton>
+      </div>
+
+      <div className="mem_links_Skeleton">
+        <Phone className="mem_icon"></Phone>
+        <Mail className="mem_icon"></Mail>
+        <Linkedin className="mem_icon"></Linkedin>
+      </div>
+    </div>
+  );
+};
+
 export default Team;
 
-export async function loader() {
+export async function TeamLoader() {
   const headers = {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
@@ -130,4 +196,10 @@ export async function loader() {
   const resData = await response.data.team;
 
   return resData;
+}
+
+export async function loader() {
+  return defer({
+    TeamData: TeamLoader(),
+  });
 }

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import "react-loading-skeleton/dist/skeleton.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Homepage from "./pages/Home";
 import Root from "./pages/Root";
@@ -40,11 +41,12 @@ import { loader as blogLoaderAuth } from "./pages/Admin/Blogs/Blogs";
 import { loader as blogLoader } from "./pages/Admin/Blogs/FullBlog";
 import { action as DeleteBlogAction } from "./pages/Admin/Blogs/BlogsEdit";
 import { loader as blogsLoader } from "./Components/Team/Team";
-import { resourceLoader as ResourceLoader } from "./pages/Admin/Resources/ResourcesEdit";
 import { blogLoader as BlogsLoader } from "./pages/Admin/Blogs/Blogs";
 import SingleBlog from "./Components/Blogs Card/Videos/SingleBlog";
 import BlogOutlet from "./Components/Blogs Card/Videos/BlogOutlet";
 import ResourceOutlet from "./Components/Links/ResourceOutlet";
+import { SkeletonTheme } from "react-loading-skeleton";
+import { loader as ResourceLoader } from "./Components/Links/Resources";
 
 function App() {
   const router = createBrowserRouter([
@@ -147,18 +149,23 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
 
   return (
-    <AnimatePresence mode="wait" initial={false}>
-      <div className="App">
-        {isLoading && (
-          <Loading isLoading={isLoading} setIsLoading={setIsLoading}></Loading>
-        )}
-        {!isLoading && (
-          <>
-            <RouterProvider router={router} />
-          </>
-        )}
-      </div>
-    </AnimatePresence>
+    <SkeletonTheme baseColor="#313131" highlightColor="#525252">
+      <AnimatePresence mode="wait" initial={false}>
+        <div className="App">
+          {isLoading && (
+            <Loading
+              isLoading={isLoading}
+              setIsLoading={setIsLoading}
+            ></Loading>
+          )}
+          {!isLoading && (
+            <>
+              <RouterProvider router={router} />
+            </>
+          )}
+        </div>
+      </AnimatePresence>
+    </SkeletonTheme>
   );
 }
 
