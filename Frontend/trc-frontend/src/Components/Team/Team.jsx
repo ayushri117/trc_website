@@ -18,8 +18,8 @@ import { Suspense } from "react";
 const Team = () => {
   let ref1 = useRef(null);
   let ref2 = useRef(null);
-  let inView1 = useInView(ref1, { once: false });
-  let inView2 = useInView(ref2, { once: false });
+  let inView1 = useInView(ref1, { once: true });
+  let inView2 = useInView(ref2, { once: true });
   let facultyControl = useAnimation();
   let memberControl = useAnimation();
   const data = useLoaderData();

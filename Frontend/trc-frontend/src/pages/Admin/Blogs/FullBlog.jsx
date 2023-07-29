@@ -8,6 +8,7 @@ import {
   redirect,
   useLoaderData,
   useSubmit,
+  useNavigate,
 } from "react-router-dom";
 
 import axios from "axios";
@@ -15,8 +16,9 @@ import axios from "axios";
 const FullBlog = () => {
   const data = useLoaderData();
   const submit = useSubmit();
+  const navigate = useNavigate();
 
-  console.log(data[0]);
+  // console.log(data[0]);
 
   const deleteBlogHandler = () => {
     const proceed = window.confirm("Are you sure?");
@@ -42,29 +44,11 @@ const FullBlog = () => {
           return <img className="Full_Blog_img" src={item.img} alt="" />;
         }
       })}
-      {/* <p className="Full_Blog_para">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
-        inventore impedit, nemo aut pariatur obcaecati adipisci a deleniti.
-        Accusantium exercitationem amet aperiam ab placeat dolorum et?
-        Exercitationem dignissimos quos enim quis suscipit optio ex est.
-        Delectus ex laboriosam, quo pariatur sequi necessitatibus architecto aut
-        voluptatibus eligendi voluptate ut velit minima iure quasi harum
-        consequatur a accusamus praesentium, esse rem eius laborum placeat
-        numquam temporibus! At labore et, nostrum ab error vero. Placeat vitae
-        at consequatur reprehenderit neque quasi libero quaerat, repudiandae
-        quibusdam molestiae provident autem nesciunt suscipit odio consequuntur.
-        Fuga assumenda illo nam maxime molestiae, temporibus magni nemo esse ab
-        dolorem qui placeat voluptas. Ut illum dolore alias, autem sit odit amet
-        ratione expedita numquam, officiis reprehenderit ipsa cupiditate
-        debitis?
-      </p>
-      <img
-        className="Full_Blog_img"
-        src="https://i.postimg.cc/zBm9pLLh/360-F-386078374-WDOvxz-Hm-UCsg0h3-Aufqbhtu-Wk-BKz8-Xp-U.jpg"
-        alt=""
-      /> */}
       <button className="Full_blog_btn" onClick={deleteBlogHandler}>
         Delete
+      </button>
+      <button className="Full_blog_btn" onClick={() => navigate("edit")}>
+        Edit
       </button>
     </div>
   );

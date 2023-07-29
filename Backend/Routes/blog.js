@@ -9,6 +9,7 @@ const blogController = require("../Controller/blog");
 router.get("/blogs", blogController.getBlogs);
 router.post("/blog", blogController.getBlog);
 router.post("/addblog", auth, blogController.postBlog);
+router.post("/editblog", auth, blogController.postEditBlog);
 router.post("/removeBlog", auth, blogController.postRemoveBlog);
 
 module.exports = router;

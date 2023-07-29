@@ -20,6 +20,9 @@ import {
 import axios from "axios";
 import Skeleton from "react-loading-skeleton";
 import { Suspense } from "react";
+import { useRef } from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const resourceVariants = {
   hidden: {
@@ -73,6 +76,22 @@ const Resources = () => {
   const data = useLoaderData();
   console.log(data);
   const navigate = useNavigate();
+  const [allowDrag, setAllowDrag] = useState("");
+  const [allowHover, setAllowHover] = useState("hover");
+
+  const isMobile = window.innerWidth < 1024;
+
+  useEffect(() => {
+    if (isMobile) {
+      setAllowDrag("y");
+      setAllowHover("");
+    } else {
+      setAllowDrag("");
+      setAllowHover("hover");
+    }
+  }, [isMobile]);
+
+  console.log(isMobile);
   return (
     <AnimatePresence>
       <motion.div
@@ -84,6 +103,9 @@ const Resources = () => {
         <Suspense
           fallback={
             <>
+              <SkeletonResource></SkeletonResource>
+              <SkeletonResource></SkeletonResource>
+              <SkeletonResource></SkeletonResource>
               <SkeletonResource></SkeletonResource>
               <SkeletonResource></SkeletonResource>
               <SkeletonResource></SkeletonResource>
@@ -100,7 +122,7 @@ const Resources = () => {
                     variants={resourceVariants}
                     initial="hidden"
                     animate="animate"
-                    whileHover="hover"
+                    whileHover={allowHover}
                   >
                     <motion.img
                       src={item.image}
@@ -108,7 +130,11 @@ const Resources = () => {
                       className="card-image"
                       variants={cardImage}
                     />
-                    <motion.div className="card-content">
+                    <motion.div
+                      className="card-content"
+                      drag={allowDrag}
+                      dragConstraints={{ top: -200, bottom: 0 }}
+                    >
                       <motion.h2 className="card-title">
                         {item.heading}
                       </motion.h2>

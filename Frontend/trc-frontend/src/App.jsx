@@ -47,6 +47,8 @@ import BlogOutlet from "./Components/Blogs Card/Videos/BlogOutlet";
 import ResourceOutlet from "./Components/Links/ResourceOutlet";
 import { SkeletonTheme } from "react-loading-skeleton";
 import { loader as ResourceLoader } from "./Components/Links/Resources";
+import EditBlog from "./pages/Admin/Blogs/EditBlog";
+import { action as EditingBlogAction } from "./pages/Admin/Blogs/EditBlog";
 
 function App() {
   const router = createBrowserRouter([
@@ -54,7 +56,11 @@ function App() {
       path: "/",
       element: <Root />,
       children: [
-        { index: true, element: <Homepage />, loader: blogsLoader },
+        {
+          index: true,
+          element: <Homepage />,
+          loader: blogsLoader,
+        },
         {
           path: "resources",
           element: <ResourceOutlet></ResourceOutlet>,
@@ -125,8 +131,20 @@ function App() {
           children: [
             {
               path: "view/:blogid",
-              element: <FullBlog></FullBlog>,
-              loader: blogLoader,
+
+              children: [
+                {
+                  index: true,
+                  element: <FullBlog></FullBlog>,
+                  loader: blogLoader,
+                },
+                {
+                  path: "edit",
+                  element: <EditBlog></EditBlog>,
+                  loader: blogLoader,
+                  action: EditingBlogAction,
+                },
+              ],
             },
             { index: true, element: <Blogs></Blogs>, loader: blogLoaderAuth },
             { path: "new", element: <AddBlog></AddBlog>, action: BlogAction },
@@ -150,7 +168,7 @@ function App() {
 
   return (
     <SkeletonTheme baseColor="#313131" highlightColor="#525252">
-      <AnimatePresence mode="wait" initial={false}>
+      <AnimatePresence initial={false}>
         <div className="App">
           {isLoading && (
             <Loading

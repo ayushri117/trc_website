@@ -204,3 +204,99 @@ exports.postRemoveBlog = async (req, res, next) => {
     });
   }
 };
+
+exports.postEditBlog = async (req, res, next) => {
+  try {
+    const { title, date, auther, previewImage, preview, resource } = req.body;
+    const token = req.headers["auth"];
+    try {
+      const user = await User.findOne({ token: token });
+
+      if (!user) {
+        res.status(202).json({
+          status: 202,
+          ok: true,
+          error: true,
+          message: "Unautharized!",
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
+    if (!(title && date && auther && previewImage && preview)) {
+      console.log("All Feilds Mandatory");
+      res.status(201).json({
+        status: 201,
+        ok: true,
+        error: true,
+        message: "All Feilds Mandatory",
+      });
+    }
+
+    const blog = await Blog.findOne({
+      title: title,
+      date: date,
+      auther: auther,
+    });
+
+    if (blog) {
+      console.log("Existing blog Found");
+
+      let information = [];
+
+      for (let i in req.body) {
+        if (
+          i != "title" &&
+          i != "date" &&
+          i != "auther" &&
+          i != "previewImage" &&
+          i != "preview" &&
+          i != "resource"
+        ) {
+          if (i.slice(0, -1) == "para") {
+            information.push({ para: req.body[i] });
+          } else if (i.slice(0, -1) == "subHeading") {
+            information.push({ subHeading: req.body[i] });
+          } else {
+            information.push({ img: req.body[i] });
+          }
+        }
+      }
+
+      console.log(information);
+
+      blog.title = title;
+      blog.date = date;
+      blog.auther = auther;
+      blog.previewImg = previewImage;
+      blog.preview = preview;
+      blog.info = information;
+      blog.resourceRef = resource;
+
+      await blog.save();
+
+      res.status(200).json({
+        status: 200,
+        ok: true,
+        message: "Blog Updated",
+      });
+    } else {
+      console.log("Blog Not Present");
+      res.status(202).json({
+        status: 202,
+        ok: true,
+        error: true,
+        message: "Blog Not Present",
+      });
+    }
+  } catch (err) {
+    console.log(err);
+
+    res.status(500).json({
+      status: 500,
+      ok: false,
+      message: "Server Error",
+    });
+  }
+};

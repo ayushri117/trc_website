@@ -77,14 +77,17 @@
 .card-image {
     width: 450px;
     height: 400px;
-    object-fit: cover;
+    object-fit:cover;
+    
 }
 
 .card-content {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
+    background-color: #14181a;
+    height: 512px;
 }
 
 .card-content-skeleton

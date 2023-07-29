@@ -1,6 +1,7 @@
 .Blogs_Main_Container
 {
     width: 100%;
+    min-height: 100vh;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -8,4 +9,11 @@
     gap: 20px;
     flex-wrap: wrap;
     padding-bottom: 20px;
+}
+
+.No-Blogs
+{
+    color: white;
+    font-size: 1.2rem;
+    align-self: flex-start;
 }

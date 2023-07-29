@@ -11,6 +11,7 @@ const searchWord = "robotics";
 
 const BlogVideo = () => {
   const pageRef = useRef(1);
+  const [showBlog, setShowBlog] = useState(true);
 
   const handleScroll = () => {
     try {
@@ -41,6 +42,22 @@ const BlogVideo = () => {
 
   const blogs = useLoaderData();
   console.log(blogs);
+
+  const location = useLocation();
+
+  let path = location.pathname;
+  let keyword = path.split("/");
+
+  let showblog = blogs.filter(checkResourceId);
+
+  if (blogs.filter(checkResourceId).length === 0) {
+    return (
+      <div style={{ paddingTop: "100px" }} className="Blogs_Main_Container">
+        <p className="No-Blogs">No Blogs for this Resource {":("}</p>
+      </div>
+    );
+  }
+
   return (
     <div style={{ paddingTop: "100px" }} className="Blogs_Main_Container">
       {blogs.filter(checkResourceId).map((item) => (
