@@ -245,6 +245,8 @@ exports.postEditBlog = async (req, res, next) => {
 
       let information = [];
 
+      console.log(req.body);
+
       for (let i in req.body) {
         if (
           i != "title" &&
@@ -254,16 +256,16 @@ exports.postEditBlog = async (req, res, next) => {
           i != "preview" &&
           i != "resource"
         ) {
-          if (i.slice(0, -1) == "para") {
+          if (i.slice(0, 4) === "para") {
             information.push({ para: req.body[i] });
-          } else if (i.slice(0, -1) == "subHeading") {
+          } else if (i.slice(0, 4) === "subH") {
             information.push({ subHeading: req.body[i] });
-          } else {
+          } else if (i.slice(0, 4) === "imag") {
             information.push({ img: req.body[i] });
           }
         }
       }
-
+      console.log("information!!!");
       console.log(information);
 
       blog.title = title;

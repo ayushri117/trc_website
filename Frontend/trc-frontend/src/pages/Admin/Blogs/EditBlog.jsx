@@ -156,7 +156,7 @@ const EditBlog = () => {
                   cols={58}
                   rows={10}
                   className="add_blog_para"
-                  name="para1"
+                  name={"para" + `${Math.random()}`}
                   id="p"
                   defaultValue={item.para}
                 ></textarea>
@@ -165,7 +165,7 @@ const EditBlog = () => {
               return (
                 <input
                   type="text"
-                  name="subHeading1"
+                  name={"subH" + `${Math.random()}`}
                   placeholder="Add Sub Heading"
                   defaultValue={item.subHeading}
                 />
@@ -174,7 +174,7 @@ const EditBlog = () => {
               return (
                 <input
                   type="text"
-                  name="image1"
+                  name={"imag" + `${Math.random()}`}
                   placeholder="Add Image Link"
                   defaultValue={item.img}
                 />
@@ -220,7 +220,6 @@ export async function action({ request, params }) {
   for (let p of data) {
     let keyValue = p[0];
     body[keyValue] = data.get(keyValue);
-    // console.log(name);
   }
 
   // console.log(body);
