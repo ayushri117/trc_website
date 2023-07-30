@@ -49,6 +49,7 @@ import { SkeletonTheme } from "react-loading-skeleton";
 import { loader as ResourceLoader } from "./Components/Links/Resources";
 import EditBlog from "./pages/Admin/Blogs/EditBlog";
 import { action as EditingBlogAction } from "./pages/Admin/Blogs/EditBlog";
+import { IconContext } from "react-icons/lib/esm";
 
 function App() {
   const router = createBrowserRouter([
@@ -167,23 +168,25 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
 
   return (
-    <SkeletonTheme baseColor="#313131" highlightColor="#525252">
-      <AnimatePresence initial={false}>
-        <div className="App">
-          {isLoading && (
-            <Loading
-              isLoading={isLoading}
-              setIsLoading={setIsLoading}
-            ></Loading>
-          )}
-          {!isLoading && (
-            <>
-              <RouterProvider router={router} />
-            </>
-          )}
-        </div>
-      </AnimatePresence>
-    </SkeletonTheme>
+    <IconContext.Provider value={{ color: "white", className: "react-icons" }}>
+      <SkeletonTheme baseColor="#313131" highlightColor="#525252">
+        <AnimatePresence initial={false}>
+          <div className="App">
+            {isLoading && (
+              <Loading
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
+              ></Loading>
+            )}
+            {!isLoading && (
+              <>
+                <RouterProvider router={router} />
+              </>
+            )}
+          </div>
+        </AnimatePresence>
+      </SkeletonTheme>
+    </IconContext.Provider>
   );
 }
 

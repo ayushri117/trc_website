@@ -10,6 +10,7 @@
 
 .Single_Blog_Box
 {
+    width: 70%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -27,22 +28,24 @@
 
 .Single_Blog_Image
 {
-    width: 75%;
+    width: 80%;
+    margin: 1.25em 0;
 }
 
 .Single_Blog_Heading
 {
+    text-align: center;
     margin-top: 1em;
     color: white;
     font-weight: 500;
     font-size: 2.5rem;
-    margin-bottom: 1.25em;
 }
 
 .Single_Blog_Heading_Image
 {
-    width: 75%;
-    margin-bottom: 1.25em;
+    width: 80%;
+    margin: 1.25em 0;
+    aspect-ratio: 16/9;
 }
 
 .Single_Blog_Para
@@ -61,14 +64,14 @@
     line-height: 1.25em;
     padding: 1.1em 0px;
     color: #DDE0E4;
-    width: 75%;
+    width: 100%;
     text-align: left;
 }
 
 .Single_Blog_Para
 {
     color: #B0B5C0;
-    width: 75%;
+    width: 100%;
     line-height: 1.85em;
     font-size: 1.1em;
     text-align: left;

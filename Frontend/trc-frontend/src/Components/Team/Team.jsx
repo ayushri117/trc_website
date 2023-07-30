@@ -133,7 +133,7 @@ const Team = () => {
                     if (!item.isFaculty) {
                       return (
                         <MemberCard
-                          control={facultyControl}
+                          control={memberControl}
                           profileImage={item.image}
                           name={item.name}
                           role={item.role}
