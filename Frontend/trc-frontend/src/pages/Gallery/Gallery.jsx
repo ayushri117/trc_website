@@ -94,41 +94,54 @@ const GalleryPage = () => {
 
   const galleryControl = useAnimation();
   return (
-    <div className="Gallery_Conatiner">
-      <div className="Gallery_Box">
-        <button
-          onClick={() => {
-            if (index < images.length && index > 0) {
-              // galleryControl.start("backward");
-              setIndex((prev) => prev - 1);
-            }
-          }}
-        >
-          <AiFillCaretLeft />
-        </button>
-        <div className="Gallery_Window">
-          <motion.div
-            className="Gallery_Crouser"
-            variants={galleryVariants}
-            animate="forward"
+    <AnimatePresence initial={true}>
+      <div className="Gallery_Conatiner">
+        <motion.div className="Gallery_Box">
+          <button
+            onClick={() => {
+              if (index < images.length && index > 0) {
+                // galleryControl.start("backward");
+                setIndex((prev) => prev - 1);
+              }
+            }}
           >
-            {images.map((img) => (
-              <img src={img.src} id={img.index}></img>
-            ))}
-          </motion.div>
-        </div>
-        <button
-          onClick={() => {
-            if (index > -1 && index < images.length - 1) {
-              // galleryControl.start("forward");
-              setIndex((prev) => prev + 1);
-            }
-          }}
-        >
-          <AiFillCaretRight />
-        </button>
+            <AiFillCaretLeft />
+          </button>
+          <div className="Gallery_Window">
+            <motion.div
+              className="Gallery_Crouser"
+              variants={galleryVariants}
+              animate="forward"
+            >
+              {images.map((img) => (
+                <motion.img
+                  src={img.src}
+                  id={img.index}
+                  initial={{ opacity: 0 }}
+                  animate={{
+                    opacity: 1,
+                    transition: {
+                      ease: [0.6, 0.01, 0.05, 0.98],
+                      duration: 1.6,
+                    },
+                  }}
+                />
+              ))}
+            </motion.div>
+          </div>
+          <button
+            onClick={() => {
+              if (index > -1 && index < images.length - 1) {
+                // galleryControl.start("forward");
+                setIndex((prev) => prev + 1);
+              }
+            }}
+          >
+            <AiFillCaretRight />
+          </button>
+        </motion.div>
       </div>
-    </div>
+    </AnimatePresence>
   );
 };
 

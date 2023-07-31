@@ -65,6 +65,7 @@ const BlogVideo = () => {
     animate: {
       transition: {
         staggerChildren: 0.2,
+        delayChildren: 0.2,
       },
     },
   };
@@ -75,8 +76,8 @@ const BlogVideo = () => {
       opacity: 1,
       scale: 1,
       transition: {
-        ease: [0.6, 0.01, 0.05, 0.98],
-        duration: 1.6,
+        duration: 0.8,
+        ease: [0.43, 0.13, 0.23, 0.96],
       },
     },
   };
