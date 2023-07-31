@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 const SingleBlog = () => {
   let { state } = useLocation();
   const blog = state.blog;
+  console.log(blog);
   return (
     <AnimatePresence initial={true}>
       <div className="Single_Blog_Container">
@@ -118,6 +119,14 @@ const SingleBlog = () => {
               );
             }
           })}
+          <iframe
+            src={blog.linkYT}
+            frameborder="0"
+            allow="autoplay; encrypted-media"
+            allowfullscreen
+            title="video"
+            className="yt_Link"
+          />
         </div>
       </div>
     </AnimatePresence>

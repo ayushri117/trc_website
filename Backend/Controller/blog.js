@@ -48,8 +48,16 @@ exports.getBlog = async (req, res, next) => {
 
 exports.postBlog = async (req, res, next) => {
   try {
-    const { title, date, auther, previewImage, preview, resource, order } =
-      req.body;
+    const {
+      title,
+      date,
+      auther,
+      previewImage,
+      preview,
+      resource,
+      order,
+      ytLink,
+    } = req.body;
     const token = req.headers["auth"];
     try {
       const user = await User.findOne({ token: token });
@@ -138,6 +146,7 @@ exports.postBlog = async (req, res, next) => {
         order: order,
         info: information,
         resourceRef: resource,
+        linkYT: ytLink,
       });
 
       res.status(200).json({
@@ -230,8 +239,16 @@ exports.postRemoveBlog = async (req, res, next) => {
 
 exports.postEditBlog = async (req, res, next) => {
   try {
-    const { title, date, auther, previewImage, preview, resource, order } =
-      req.body;
+    const {
+      title,
+      date,
+      auther,
+      previewImage,
+      preview,
+      resource,
+      order,
+      ytLink,
+    } = req.body;
     const token = req.headers["auth"];
     try {
       const user = await User.findOne({ token: token });
@@ -316,6 +333,7 @@ exports.postEditBlog = async (req, res, next) => {
       blog.preview = preview;
       blog.info = information;
       blog.resourceRef = resource;
+      blog.linkYT = ytLink;
 
       await blog.save();
 

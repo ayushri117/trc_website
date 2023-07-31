@@ -132,6 +132,12 @@ const EditBlog = () => {
           placeholder="Add the Index of Blog"
           defaultValue={blogData ? blogData[0].order : ""}
         />
+        <input
+          type="text"
+          name="ytLink"
+          placeholder="Youtube Link"
+          defaultValue={blogData ? blogData[0].linkYT : ""}
+        />
         <textarea
           type="text"
           name="preview"
@@ -190,7 +196,7 @@ const EditBlog = () => {
           })}
         </div>
         <button disabled={isSubmitting} className="team_form_button">
-          {isSubmitting ? "Adding..." : "Add Blog"}
+          {isSubmitting ? "Editing..." : "Edit Blog"}
         </button>
       </Form>
       <div className="footer_btn">

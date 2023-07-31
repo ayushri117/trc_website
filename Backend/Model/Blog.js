@@ -34,6 +34,10 @@ const blogSchema = new mongoose.Schema({
     type: Schema.Types.ObjectId,
     ref: "ResourceCollection",
   },
+  linkYT: {
+    type: String,
+    default: null,
+  },
 });
 
 module.exports = mongoose.model("Blog", blogSchema);

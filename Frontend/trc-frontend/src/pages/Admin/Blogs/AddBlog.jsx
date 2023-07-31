@@ -114,6 +114,7 @@ const AddBlog = () => {
           cols={58}
           rows={10}
         />
+        <input type="text" name="ytLink" placeholder="Youtube Link" />
         <select name="resource" id="resource" className="blog_dropdown">
           {rescorceOption.map((resource) => (
             <option value={`${resource.value}`}>{resource.name}</option>
