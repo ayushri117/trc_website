@@ -93,7 +93,7 @@ const Resources = () => {
 
   console.log(isMobile);
   return (
-    <AnimatePresence>
+    <AnimatePresence initial={true}>
       <motion.div
         className="card-container"
         variants={container}

@@ -30,7 +30,12 @@ const FullBlog = () => {
   };
   return (
     <div className="Full_Blog_Container">
-      <h2 className="blog_title">{data[0].title}</h2>
+      <h2 className="blog_title">
+        {" "}
+        {data[0].order}
+        {". "}
+        {data[0].title}
+      </h2>
       <div className="blog_subInfo">
         <h5 className="subinfo_text">Date - {data[0].date}</h5>
         <h5 className="subinfo_text"> by {data[0].auther}</h5>

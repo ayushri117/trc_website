@@ -90,6 +90,16 @@
     height: 512px;
 }
 
+.card-content::after
+{
+    content: '';
+    width: 100px;
+    border-radius: 8px;
+    position: absolute;
+    height: 1.5px;
+    background: #c8c8c8;
+}
+
 .card-content-skeleton
 {
     display: flex;

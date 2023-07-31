@@ -6,7 +6,11 @@ import { motion } from "framer-motion";
 const Blog = ({ data }) => {
   return (
     <motion.div className="blog_box">
-      <h2 className="blog_title">{data.title}</h2>
+      <h2 className="blog_title">
+        {data.order}
+        {". "}
+        {data.title}
+      </h2>
       <div className="blog_subInfo">
         <h5 className="subinfo_text">Date - {data.date}</h5>
         <h5 className="subinfo_text"> by {data.auther}</h5>

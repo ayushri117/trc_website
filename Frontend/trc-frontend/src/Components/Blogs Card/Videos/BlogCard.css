@@ -21,6 +21,13 @@
     text-decoration: none;
 }
 
+.Blog_Card_Link
+{
+    width: 380px;
+    height: 500px;
+    text-decoration: none;
+}
+
 .Blog_Card_Container img
 {
     width: 100%;

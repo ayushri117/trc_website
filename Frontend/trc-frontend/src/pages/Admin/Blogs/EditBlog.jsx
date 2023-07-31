@@ -125,6 +125,13 @@ const EditBlog = () => {
           placeholder="Preview Image*"
           defaultValue={blogData ? blogData[0].previewImg : ""}
         />
+        <input
+          type="number"
+          name="order"
+          id="order"
+          placeholder="Add the Index of Blog"
+          defaultValue={blogData ? blogData[0].order : ""}
+        />
         <textarea
           type="text"
           name="preview"
@@ -207,7 +214,8 @@ export async function action({ request, params }) {
     !data.get("date") ||
     !data.get("auther") ||
     !data.get("previewImage") ||
-    !data.get("preview")
+    !data.get("preview") ||
+    !data.get("order")
   ) {
     return json(
       { error: true, message: "All feilds are Mandatory" },

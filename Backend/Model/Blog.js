@@ -22,6 +22,10 @@ const blogSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  order: {
+    type: Number,
+    required: true,
+  },
   info: {
     type: Array,
     default: [],

@@ -48,7 +48,8 @@ exports.getBlog = async (req, res, next) => {
 
 exports.postBlog = async (req, res, next) => {
   try {
-    const { title, date, auther, previewImage, preview, resource } = req.body;
+    const { title, date, auther, previewImage, preview, resource, order } =
+      req.body;
     const token = req.headers["auth"];
     try {
       const user = await User.findOne({ token: token });
@@ -65,7 +66,9 @@ exports.postBlog = async (req, res, next) => {
       console.log(error);
     }
 
-    if (!(title && date && auther && previewImage && preview)) {
+    if (
+      !(title && date && auther && previewImage && preview && order && resource)
+    ) {
       console.log("All Feilds Mandatory");
       res.status(201).json({
         status: 201,
@@ -75,10 +78,28 @@ exports.postBlog = async (req, res, next) => {
       });
     }
 
+    const check = await Blog.find({
+      order: order,
+      resourceRef: resource,
+    });
+
+    if (check.length !== 0) {
+      console.log(check);
+      console.log("Blog with same order Present");
+      return res.status(202).json({
+        status: 202,
+        ok: true,
+        error: true,
+        message: "Blog with same order Present",
+      });
+    }
+
     const blog = await Blog.findOne({
       title: title,
       date: date,
       auther: auther,
+      order: order,
+      resourceRef: resource,
     });
 
     if (!blog) {
@@ -93,7 +114,8 @@ exports.postBlog = async (req, res, next) => {
           i != "auther" &&
           i != "previewImage" &&
           i != "preview" &&
-          i != "resource"
+          i != "resource" &&
+          i != "order"
         ) {
           if (i.slice(0, -1) == "para") {
             information.push({ para: req.body[i] });
@@ -113,6 +135,7 @@ exports.postBlog = async (req, res, next) => {
         auther: auther,
         previewImg: previewImage,
         preview: preview,
+        order: order,
         info: information,
         resourceRef: resource,
       });
@@ -207,7 +230,8 @@ exports.postRemoveBlog = async (req, res, next) => {
 
 exports.postEditBlog = async (req, res, next) => {
   try {
-    const { title, date, auther, previewImage, preview, resource } = req.body;
+    const { title, date, auther, previewImage, preview, resource, order } =
+      req.body;
     const token = req.headers["auth"];
     try {
       const user = await User.findOne({ token: token });
@@ -224,7 +248,7 @@ exports.postEditBlog = async (req, res, next) => {
       console.log(error);
     }
 
-    if (!(title && date && auther && previewImage && preview)) {
+    if (!(title && date && auther && previewImage && preview && order)) {
       console.log("All Feilds Mandatory");
       res.status(201).json({
         status: 201,
@@ -234,10 +258,25 @@ exports.postEditBlog = async (req, res, next) => {
       });
     }
 
+    // const check = await Blog.find({
+    //   order: order,
+    //   resourceRef: resource,
+    // });
+
+    // if (check.length === 0) {
+    //   return res.status(202).json({
+    //     status: 202,
+    //     ok: true,
+    //     error: true,
+    //     message: "Blog with order not Present",
+    //   });
+    // }
+
     const blog = await Blog.findOne({
       title: title,
       date: date,
       auther: auther,
+      resourceRef: resource,
     });
 
     if (blog) {
@@ -254,7 +293,8 @@ exports.postEditBlog = async (req, res, next) => {
           i != "auther" &&
           i != "previewImage" &&
           i != "preview" &&
-          i != "resource"
+          i != "resource" &&
+          i != "order"
         ) {
           if (i.slice(0, 4) === "para") {
             information.push({ para: req.body[i] });
@@ -271,6 +311,7 @@ exports.postEditBlog = async (req, res, next) => {
       blog.title = title;
       blog.date = date;
       blog.auther = auther;
+      blog.order = order;
       blog.previewImg = previewImage;
       blog.preview = preview;
       blog.info = information;

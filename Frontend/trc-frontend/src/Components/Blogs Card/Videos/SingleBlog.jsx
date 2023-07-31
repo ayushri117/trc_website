@@ -11,7 +11,11 @@ const SingleBlog = () => {
         <Link className="Back_Link" to="..">
           Back To Home
         </Link>
-        <h2 className="Single_Blog_Heading">{blog.title}</h2>
+        <h2 className="Single_Blog_Heading">
+          {blog.order}
+          {". "}
+          {blog.title}
+        </h2>
         <img
           className="Single_Blog_Heading_Image"
           src={blog.previewImg}

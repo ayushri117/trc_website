@@ -5,6 +5,7 @@ import { useLoaderData, useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import BlogCard from "./BlogCard";
 import "./Blog.css";
+import { animate, motion } from "framer-motion";
 
 const api = import.meta.env.VITE_NEWSKEY2;
 const searchWord = "robotics";
@@ -58,14 +59,40 @@ const BlogVideo = () => {
     );
   }
 
+  blogs.sort((a, b) => a.order - b.order);
+
+  const container = {
+    animate: {
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const blogVariants = {
+    initial: { opacity: 0, scale: 0 },
+    animate: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        ease: [0.6, 0.01, 0.05, 0.98],
+        duration: 1.6,
+      },
+    },
+  };
+
   return (
-    <div style={{ paddingTop: "100px" }} className="Blogs_Main_Container">
+    <motion.div
+      style={{ paddingTop: "100px" }}
+      className="Blogs_Main_Container"
+      variants={container}
+      initial="initial"
+      animate="animate"
+    >
       {blogs.filter(checkResourceId).map((item) => (
-        <>
-          <BlogCard data={item}></BlogCard>
-        </>
+        <BlogCard data={item} blogVariants={blogVariants}></BlogCard>
       ))}
-    </div>
+    </motion.div>
   );
 };
 

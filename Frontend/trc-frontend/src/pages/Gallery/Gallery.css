@@ -52,4 +52,6 @@
   border-radius: 20px;
   padding: 10px;
   cursor: pointer;
+  background-color: black;
+  border: none;
 }

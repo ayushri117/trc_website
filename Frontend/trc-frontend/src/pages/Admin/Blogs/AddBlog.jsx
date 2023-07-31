@@ -101,6 +101,12 @@ const AddBlog = () => {
         <input type="text" name="date" placeholder="Date*" />
         <input type="text" name="auther" placeholder="Auther*" />
         <input type="text" name="previewImage" placeholder="Preview Image*" />
+        <input
+          type="number"
+          name="order"
+          id="order"
+          placeholder="Add the Index of Blog"
+        />
         <textarea
           type="text"
           name="preview"
