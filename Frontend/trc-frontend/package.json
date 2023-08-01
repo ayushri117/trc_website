@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emailjs/browser": "^3.11.0",
     "axios": "^1.4.0",
     "feather-icons-react": "^0.6.2",
     "framer-motion": "^10.12.16",

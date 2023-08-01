@@ -1,0 +1,92 @@
+.Contact_Container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.Contact_form {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 40%;
+    padding: 60px;
+}
+
+.Contact_form label {
+    color: white;
+}
+
+.Contact_Info {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    gap: 5px;
+    overflow: hidden;
+}
+
+.Info_item {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.Contact_Subject {
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+}
+
+.Contact_Msg {
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.Contact_textarea {
+    width: 100%;
+    height: 250px;
+    padding: 8px;
+    border-radius: 8px;
+    outline: none;
+    border: black;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.Contact_form input {
+    width: 100%;
+    height: 30px;
+    padding: 8px;
+    border-radius: 8px;
+    outline: none;
+    border: black;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.Contact_form label:focus-within {
+    color: #185ADD;
+}
+
+.Contact_Submit {
+    background-color: #185ADD;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+}

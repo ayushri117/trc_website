@@ -90,16 +90,12 @@ const Navbar = () => {
           </NavLink>
         </li>
         <li className="navbar_itemBox">
-          <Link
+          <NavLink
             className="navbar__item"
-            to="contact_container"
-            spy={true}
-            smooth={true}
-            offset={-50}
-            duration={500}
+            to="/contact"
           >
             CONTACT
-          </Link>
+          </NavLink>
         </li>
       </ul>
     </motion.div>

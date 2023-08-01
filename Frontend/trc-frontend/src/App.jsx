@@ -11,7 +11,7 @@ import { AnimatePresence } from "framer-motion";
 import BlogsPage from "./pages/Blogs";
 import GalleryPage from "./pages/Gallery/Gallery";
 import TeamPage from "./pages/Team";
-import ContactPage from "./pages/Contact";
+import ContactPage from "./pages/Contact/Contact";
 import BlogVideo from "./Components/Blogs Card/Videos/Blog";
 import TutorialVideo from "./Components/Blogs Card/Videos/Tutorial";
 import LectureVideo from "./Components/Blogs Card/Videos/Lecture";
@@ -88,7 +88,7 @@ function App() {
         { path: "about", element: <AboutPage /> },
         { path: "gallery", element: <GalleryPage /> },
         { path: "team", element: <TeamPage /> },
-        { path: "contactUs", element: <ContactPage /> },
+        { path: "contact", element: <ContactPage /> },
       ],
     },
     {
@@ -170,7 +170,7 @@ function App() {
   return (
     <IconContext.Provider value={{ color: "white", className: "react-icons" }}>
       <SkeletonTheme baseColor="#313131" highlightColor="#525252">
-        <AnimatePresence initial={false}>
+        <AnimatePresence initial={true}>
           <div className="App">
             {isLoading && (
               <Loading
