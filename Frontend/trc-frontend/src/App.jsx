@@ -8,7 +8,9 @@ import ResourcesPage from "./pages/Resources";
 import AboutPage from "./pages/About";
 import Loading from "./Components/Loading";
 import { AnimatePresence } from "framer-motion";
-import GalleryPage from "./pages/Gallery/Gallery";
+import GalleryPage, {
+  loader as GalleryImageLoader,
+} from "./pages/Gallery/Gallery";
 import TeamPage from "./pages/Team";
 import ContactPage from "./pages/Contact/Contact";
 import BlogVideo from "./Components/Blogs Card/Videos/Blog";
@@ -88,7 +90,11 @@ function App() {
           ],
         },
         { path: "about", element: <AboutPage /> },
-        { path: "gallery", element: <GalleryPage /> },
+        {
+          path: "gallery",
+          element: <GalleryPage />,
+          loader: GalleryImageLoader,
+        },
         { path: "team", element: <TeamPage /> },
         { path: "contact", element: <ContactPage /> },
       ],
