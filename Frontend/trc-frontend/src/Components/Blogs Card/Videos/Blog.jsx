@@ -107,6 +107,6 @@ export default BlogVideo;
 
 export async function loader({ request, params }) {
   return defer({
-    blogData: await blogLoader(),
+    blogData: blogLoader(),
   });
 }
