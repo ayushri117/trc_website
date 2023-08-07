@@ -1,11 +1,12 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, Suspense } from "react";
 import axios from "axios";
-import styles from "../selector.module.css";
-import { useLoaderData, useLocation } from "react-router-dom";
+import { useLoaderData, useLocation, defer, Await } from "react-router-dom";
 import { Link } from "react-router-dom";
 import BlogCard from "./BlogCard";
 import "./Blog.css";
 import { animate, motion } from "framer-motion";
+import { blogLoader } from "../../../pages/Admin/Blogs/Blogs";
+import BlogSkeleton from "./BlogSkeleton";
 
 const api = import.meta.env.VITE_NEWSKEY2;
 const searchWord = "robotics";
@@ -42,24 +43,6 @@ const BlogVideo = () => {
   }, []);
 
   const blogs = useLoaderData();
-  console.log(blogs);
-
-  const location = useLocation();
-
-  let path = location.pathname;
-  let keyword = path.split("/");
-
-  let showblog = blogs.filter(checkResourceId);
-
-  if (blogs.filter(checkResourceId).length === 0) {
-    return (
-      <div style={{ paddingTop: "100px" }} className="Blogs_Main_Container">
-        <p className="No-Blogs">No Blogs for this Resource {":("}</p>
-      </div>
-    );
-  }
-
-  blogs.sort((a, b) => a.order - b.order);
 
   const container = {
     animate: {
@@ -90,11 +73,40 @@ const BlogVideo = () => {
       initial="initial"
       animate="animate"
     >
-      {blogs.filter(checkResourceId).map((item) => (
-        <BlogCard data={item} blogVariants={blogVariants}></BlogCard>
-      ))}
+      <Suspense
+        fallback={
+          <>
+            <BlogSkeleton></BlogSkeleton>
+            <BlogSkeleton></BlogSkeleton>
+            <BlogSkeleton></BlogSkeleton>
+            <BlogSkeleton></BlogSkeleton>
+            <BlogSkeleton></BlogSkeleton>
+            <BlogSkeleton></BlogSkeleton>
+          </>
+        }
+      >
+        <Await resolve={blogs.blogData}>
+          {(loadedBlogs) =>
+            loadedBlogs.filter(checkResourceId).length !== 0 ? (
+              loadedBlogs
+                .filter(checkResourceId)
+                .map((item) => (
+                  <BlogCard data={item} blogVariants={blogVariants}></BlogCard>
+                ))
+            ) : (
+              <p style={{ color: "white" }}>No Resources Found</p>
+            )
+          }
+        </Await>
+      </Suspense>
     </motion.div>
   );
 };
 
 export default BlogVideo;
+
+export async function loader({ request, params }) {
+  return defer({
+    blogData: await blogLoader(),
+  });
+}

@@ -45,9 +45,12 @@ export async function blogLoader() {
     "Access-Control-Allow-Origin": "*",
   };
 
-  const response = await axios.get("https://trc-iitpkd-backend.onrender.com/blogs", {
-    headers: headers,
-  });
+  const response = await axios.get(
+    "https://trc-iitpkd-backend.onrender.com/blogs",
+    {
+      headers: headers,
+    }
+  );
 
   if (response.status === 500) {
     return json({ error: true, message: "Server Error" }, { status: 500 });
@@ -64,49 +67,3 @@ export async function loader({ request, params }) {
     blogData: await blogLoader(),
   });
 }
-//   export async function action({ request, params }) {
-//     const data = await request.formData();
-
-//     if (!data.get("heading") || !data.get("info")) {
-//       return json(
-//         { error: true, message: "All feilds are Mandatory" },
-//         { status: 500 }
-//       );
-//     }
-
-//     const body = {
-//       heading: data.get("heading"),
-//       info: data.get("info"),
-//     };
-
-//     const token = getAuthToken();
-
-//     const headers = {
-//       "Content-Type": "application/json",
-//       "Access-Control-Allow-Origin": "*",
-//       Auth: token,
-//     };
-
-//     const response = await axios.post(
-//       "http://localhost:4000/removeResource",
-//       body,
-//       {
-//         headers: headers,
-//       }
-//     );
-
-//     console.log(response);
-
-//     if (response.status === 201 || response.status === 202) {
-//       return response.data;
-//     }
-
-//     if (!response.data.ok) {
-//       return json(
-//         { error: true, message: "Could Not delete Resource" },
-//         { status: 500 }
-//       );
-//     }
-
-//     return redirect("/admin/resources");
-//   }

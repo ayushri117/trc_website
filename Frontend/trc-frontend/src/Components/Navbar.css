@@ -73,7 +73,6 @@
 
 #check{
     display: none;
-    justify-content: flex-end;
 }
 
 @media (max-width: 952px){
@@ -116,10 +115,6 @@
     .navbar__box li .navbar__item{
       font-size: 20px;
     }
-    /* a:hover,a.active{
-      background: none;
-      color: #0082e6;
-    } */
     #check:checked ~ .navbar__box{
       left: 0;
     }

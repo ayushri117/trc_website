@@ -9,12 +9,14 @@ exports.getBlogs = async (req, res, next) => {
 
     console.log("Blogs Found");
 
-    res.status(200).json({
-      statusCode: 200,
-      ok: true,
-      message: "Blogs Found",
-      blog: blogs,
-    });
+    setTimeout(() => {
+      res.status(200).json({
+        statusCode: 200,
+        ok: true,
+        message: "Blogs Found",
+        blog: blogs,
+      });
+    }, 5000);
   } catch (err) {
     res.status(500).json({
       status: 500,
