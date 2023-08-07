@@ -1,0 +1,23 @@
+.Gallery_Box_Admin
+{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.Gallery_Card
+{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.gallery_button_admin
+{
+    width: 100px;
+    border: none;
+    background-color: red;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+}

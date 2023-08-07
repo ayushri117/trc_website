@@ -47,6 +47,11 @@ import { loader as ResourceLoader } from "./Components/Links/Resources";
 import EditBlog from "./pages/Admin/Blogs/EditBlog";
 import { action as EditingBlogAction } from "./pages/Admin/Blogs/EditBlog";
 import { IconContext } from "react-icons/lib/esm";
+import Gallery from "./pages/Admin/Gallery/Gallery";
+import { loader as GalleryLoader } from "./pages/Admin/Gallery/Gallery";
+import AddGallery from "./pages/Admin/Gallery/AddGallery";
+import { action as GalleryAction } from "./pages/Admin/Gallery/AddGallery";
+import { action as RemoveGalleryImage } from "./pages/Admin/Gallery/GalleryEdit";
 
 function App() {
   const router = createBrowserRouter([
@@ -117,8 +122,23 @@ function App() {
         { path: "login", element: <Login></Login>, action: authAction },
         {
           path: "gallery",
+          id: "gallery-remove",
           element: <GalleryEdit></GalleryEdit>,
           loader: checkAuthToken,
+
+          children: [
+            {
+              index: true,
+              element: <Gallery></Gallery>,
+              loader: GalleryLoader,
+              action: RemoveGalleryImage,
+            },
+            {
+              path: "new",
+              element: <AddGallery></AddGallery>,
+              action: GalleryAction,
+            },
+          ],
         },
         {
           path: "blogs",

@@ -6,6 +6,7 @@ const User = require("./Model/User");
 const TeamMember = require("./Model/TeamMember");
 const Resource = require("./Model/Resource");
 const Blog = require("./Model/Blog");
+const Gallery = require("./Model/Gallery");
 
 require("dotenv").config({ paht: "/.env" });
 
@@ -18,6 +19,7 @@ const authRoute = require("./Routes/auth");
 const teamRoute = require("./Routes/team");
 const resourceRoute = require("./Routes/resource");
 const blogRoute = require("./Routes/blog");
+const galleryRoute = require("./Routes/gallery");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -30,6 +32,7 @@ app.use(authRoute);
 app.use(teamRoute);
 app.use(resourceRoute);
 app.use(blogRoute);
+app.use(galleryRoute);
 
 mongoose
   .connect(MONGODB_URI)
