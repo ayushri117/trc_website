@@ -2,7 +2,8 @@ import logo from "../assets/logo.webp";
 import { Link } from "react-scroll";
 import "./Navbar.css";
 import { NavLink } from "react-router-dom";
-import { motion } from "framer-motion";
+import { color, motion } from "framer-motion";
+import MenuPNG from "../assets/Menu.png";
 
 const Navbar = () => {
   return (
@@ -26,6 +27,10 @@ const Navbar = () => {
       initial="hidden"
       animate="animate"
     >
+      <input type="checkbox" id="check" />
+      <label for="check" class="checkbtn">
+        <img src={MenuPNG} alt="" />
+      </label>
       <Link
         className="logo_box"
         to="hero_container"
@@ -90,10 +95,7 @@ const Navbar = () => {
           </NavLink>
         </li>
         <li className="navbar_itemBox">
-          <NavLink
-            className="navbar__item"
-            to="/contact"
-          >
+          <NavLink className="navbar__item" to="/contact">
             CONTACT
           </NavLink>
         </li>

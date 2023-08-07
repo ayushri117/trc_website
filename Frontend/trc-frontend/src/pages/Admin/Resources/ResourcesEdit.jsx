@@ -76,7 +76,7 @@ export async function resourceLoader() {
     "Access-Control-Allow-Origin": "*",
   };
 
-  const response = await axios.get("http://localhost:4000/resource", {
+  const response = await axios.get("https://trc-iitpkd-backend.onrender.com/resource", {
     headers: headers,
   });
 
@@ -119,7 +119,7 @@ export async function action({ request, params }) {
   };
 
   const response = await axios.post(
-    "http://localhost:4000/removeResource",
+    "https://trc-iitpkd-backend.onrender.com/removeResource",
     body,
     {
       headers: headers,

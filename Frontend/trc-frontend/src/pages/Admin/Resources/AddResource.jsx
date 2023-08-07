@@ -100,7 +100,7 @@ export async function action({ request, params }) {
     Auth: token,
   };
 
-  const response = await axios.post("http://localhost:4000/addResource", body, {
+  const response = await axios.post("https://trc-iitpkd-backend.onrender.com/addResource", body, {
     headers: headers,
   });
 

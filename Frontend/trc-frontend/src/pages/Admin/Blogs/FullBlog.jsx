@@ -71,7 +71,7 @@ export async function loader({ params }) {
     id: params.blogid,
   };
 
-  const response = await axios.post(`http://localhost:4000/blog`, body, {
+  const response = await axios.post(`https://trc-iitpkd-backend.onrender.com/blog`, body, {
     headers: headers,
   });
 

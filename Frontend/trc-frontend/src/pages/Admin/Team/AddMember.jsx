@@ -114,7 +114,7 @@ export async function action({ request, params }) {
     Auth: token,
   };
 
-  const response = await axios.post("http://localhost:4000/addMember", body, {
+  const response = await axios.post("https://trc-iitpkd-backend.onrender.com/addMember", body, {
     headers: headers,
   });
 

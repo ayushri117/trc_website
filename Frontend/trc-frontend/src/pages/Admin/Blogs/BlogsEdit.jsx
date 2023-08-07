@@ -47,7 +47,7 @@ export async function action({ request, params }) {
     Auth: token,
   };
 
-  const response = await axios.post(`http://localhost:4000/removeBlog`, body, {
+  const response = await axios.post(`https://trc-iitpkd-backend.onrender.com/removeBlog`, body, {
     headers: headers,
   });
 

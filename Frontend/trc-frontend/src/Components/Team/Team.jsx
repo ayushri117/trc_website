@@ -39,7 +39,7 @@ const Team = () => {
   return (
     <div className="team_container">
       <motion.div className="team_overlay">
-        <motion.h1
+        {/* <motion.h1
           className="team_heading"
           variants={{
             hidden: {
@@ -59,7 +59,7 @@ const Team = () => {
           animate={facultyControl}
         >
           FACULTY
-        </motion.h1>
+        </motion.h1> */}
         <div className="team_faculty_container" ref={ref1}>
           <Suspense
             fallback={
@@ -88,33 +88,38 @@ const Team = () => {
                     }
                   })
                 ) : (
-                  <p style={{ color: "white" }}>No Resources Found</p>
+                  <p style={{ color: "white" }}>No Faculty Found</p>
                 )
               }
             </Await>
           </Suspense>
         </div>
-        <motion.h1
-          className="team_heading"
-          variants={{
-            hidden: {
-              y: 24,
-              opacity: 0,
-            },
-            animate: {
-              y: 0,
-              opacity: 1,
-              transition: {
-                ease: [0.6, 0.01, 0.05, 0.98],
-                duration: 1.6,
+        {data.TeamData ? (
+          <motion.h1
+            className="team_heading"
+            variants={{
+              hidden: {
+                y: 24,
+                opacity: 0,
               },
-            },
-          }}
-          initial="hidden"
-          animate={memberControl}
-        >
-          TEAM
-        </motion.h1>
+              animate: {
+                y: 0,
+                opacity: 1,
+                transition: {
+                  ease: [0.6, 0.01, 0.05, 0.98],
+                  duration: 1.6,
+                },
+              },
+            }}
+            initial="hidden"
+            animate={facultyControl}
+          >
+            TEAM
+          </motion.h1>
+        ) : (
+          <></>
+        )}
+
         <div className="team_mem_members" ref={ref2}>
           <Suspense
             fallback={
@@ -126,19 +131,47 @@ const Team = () => {
             }
           >
             <Await resolve={data.TeamData}>
+              {(loadedTeam) => {
+                if (loadedTeam.length !== 0) {
+                  return (
+                    <>
+                      {loadedTeam.map((item) => {
+                        console.log(loadedTeam);
+                        if (!item.isFaculty) {
+                          return (
+                            <MemberCard
+                              control={memberControl}
+                              profileImage={item.image}
+                              name={item.name}
+                              role={item.role}
+                              delay={0}
+                            ></MemberCard>
+                          );
+                        }
+                      })}
+                    </>
+                  );
+                } else {
+                  return <></>;
+                }
+              }}
+            </Await>
+            {/* <Await resolve={data.TeamData}>
               {(loadedTeam) =>
                 // console.log(loadedTeamData.length);
                 loadedTeam.length !== 0 ? (
                   loadedTeam.map((item) => {
                     if (!item.isFaculty) {
                       return (
-                        <MemberCard
-                          control={memberControl}
-                          profileImage={item.image}
-                          name={item.name}
-                          role={item.role}
-                          delay={0}
-                        ></MemberCard>
+                        <>
+                          <MemberCard
+                            control={memberControl}
+                            profileImage={item.image}
+                            name={item.name}
+                            role={item.role}
+                            delay={0}
+                          ></MemberCard>
+                        </>
                       );
                     }
                   })
@@ -146,7 +179,7 @@ const Team = () => {
                   <p style={{ color: "white" }}>No Resources Found</p>
                 )
               }
-            </Await>
+            </Await> */}
           </Suspense>
         </div>
       </motion.div>
@@ -185,9 +218,12 @@ export async function TeamLoader() {
     "Access-Control-Allow-Origin": "*",
   };
 
-  const response = await axios.get("http://localhost:4000/team", {
-    headers: headers,
-  });
+  const response = await axios.get(
+    "https://trc-iitpkd-backend.onrender.com/team",
+    {
+      headers: headers,
+    }
+  );
 
   if (response.status === 500) {
     return json({ error: true, message: "Server Error" }, { status: 500 });

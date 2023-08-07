@@ -79,7 +79,7 @@ export async function teamLoader() {
     "Access-Control-Allow-Origin": "*",
   };
 
-  const response = await axios.get("http://localhost:4000/team", {
+  const response = await axios.get("https://trc-iitpkd-backend.onrender.com/team", {
     headers: headers,
   });
 
@@ -122,7 +122,7 @@ export async function action({ request, params }) {
   };
 
   const response = await axios.post(
-    "http://localhost:4000/removeMember",
+    "https://trc-iitpkd-backend.onrender.com/removeMember",
     body,
     {
       headers: headers,

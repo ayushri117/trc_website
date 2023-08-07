@@ -54,7 +54,7 @@ export async function action({ request, params }) {
     "Access-Control-Allow-Origin": "*",
   };
 
-  const response = await axios.post("http://localhost:4000/login", body, {
+  const response = await axios.post("https://trc-iitpkd-backend.onrender.com/login", body, {
     headers: headers,
   });
 

@@ -7,7 +7,7 @@ export async function action() {
     "Access-Control-Allow-Origin": "*",
   };
 
-  const response = await axios.get("http://localhost:4000/logout", {
+  const response = await axios.get("https://trc-iitpkd-backend.onrender.com/logout", {
     headers: headers,
   });
 

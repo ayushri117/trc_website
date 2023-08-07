@@ -45,7 +45,7 @@ export async function blogLoader() {
     "Access-Control-Allow-Origin": "*",
   };
 
-  const response = await axios.get("http://localhost:4000/blogs", {
+  const response = await axios.get("https://trc-iitpkd-backend.onrender.com/blogs", {
     headers: headers,
   });
 
