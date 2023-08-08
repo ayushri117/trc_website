@@ -1,6 +1,7 @@
 const TeamMember = require("../Model/TeamMember");
 const User = require("../Model/User");
 const Resource = require("../Model/Resource");
+const Blog = require("../Model/Blog");
 
 exports.getResource = async (req, res, next) => {
   try {
@@ -128,6 +129,8 @@ exports.postRemoveResource = async (req, res, next) => {
 
     if (resource) {
       console.log("Resource Found");
+
+      await Blog.deleteMany({ resourceRef: resource._id });
 
       await Resource.deleteOne({
         heading: heading,
