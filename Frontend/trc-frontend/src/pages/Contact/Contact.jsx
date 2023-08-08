@@ -6,6 +6,7 @@ import { useState } from "react";
 
 const ContactPage = () => {
   const [lebelAnimation, setLabelAnimation] = useState("animate");
+  const [loading, setLoading] = useState(false);
   const form = useRef();
 
   const Service_Id = import.meta.env.VITE_SERVICE_ID;
@@ -15,11 +16,16 @@ const ContactPage = () => {
   const sendEmail = (e) => {
     e.preventDefault();
 
+    setLoading(true);
+
     emailjs.sendForm(Service_Id, Template_Id, form.current, Public_Key).then(
       (result) => {
+        console.log(result);
         e.target.reset();
+        setLoading(false);
       },
       (error) => {
+        alert("There was an error!");
         console.log(error.text);
       }
     );
@@ -136,7 +142,7 @@ const ContactPage = () => {
             Message
           </motion.label>
           <motion.textarea
-            name="message"
+            name="user_message"
             className="Contact_textarea"
             initial={{ opacity: 0, width: 0, background: "#fff" }}
             animate={{
@@ -149,7 +155,11 @@ const ContactPage = () => {
             }}
           />
         </div>
-        <motion.input type="submit" value="Send" className="Contact_Submit" />
+        <motion.input
+          type="submit"
+          value={!loading ? "Submit" : "Sending..."}
+          className="Contact_Submit"
+        />
       </form>
     </div>
   );
