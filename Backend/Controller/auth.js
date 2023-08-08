@@ -71,7 +71,7 @@ exports.logout = async (req, res, next) => {
 
       const index = user.token.indexOf(token);
       if (index > -1) {
-        array.splice(index, 1);
+        user.token.splice(index, 1);
       }
 
       await user.save();
