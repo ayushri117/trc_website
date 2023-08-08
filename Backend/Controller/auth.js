@@ -29,7 +29,7 @@ exports.login = async (req, res, next) => {
         }
       );
 
-      user.token = token;
+      user.token.push(token);
 
       await user.save();
 
@@ -63,12 +63,16 @@ exports.login = async (req, res, next) => {
 
 exports.logout = async (req, res, next) => {
   try {
+    const token = req.headers["auth"];
     const user = await User.findOne();
 
     if (user) {
       console.log("user Found for logout");
 
-      user.token = null;
+      const index = user.token.indexOf(token);
+      if (index > -1) {
+        array.splice(index, 1);
+      }
 
       await user.save();
 

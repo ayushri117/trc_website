@@ -1,15 +1,21 @@
 import { redirect } from "react-router-dom";
 import axios from "axios";
+import { getAuthToken } from "../../../../util/auth";
 
 export async function action() {
+  const token = getAuthToken();
   const headers = {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
+    Auth: token,
   };
 
-  const response = await axios.get("https://trc-iitpkd-backend.onrender.com/logout", {
-    headers: headers,
-  });
+  const response = await axios.get(
+    "https://trc-iitpkd-backend.onrender.com/logout",
+    {
+      headers: headers,
+    }
+  );
 
   console.log(response);
 
