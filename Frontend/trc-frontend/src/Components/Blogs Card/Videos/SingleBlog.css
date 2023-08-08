@@ -85,7 +85,8 @@
 
 .yt_Link
 {
-    width: 50%;
+    width: 80%;
+    min-width: 300px;
     margin: 1.25em 0;
     aspect-ratio: 16/9;
 }

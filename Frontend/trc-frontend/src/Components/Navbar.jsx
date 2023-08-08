@@ -27,7 +27,19 @@ const Navbar = () => {
       initial="hidden"
       animate="animate"
     >
-      <input type="checkbox" id="check" />
+      <input
+        type="checkbox"
+        id="check"
+        onChange={() => {
+          let navbar = document.querySelector(".navbar__box");
+          console.log(navbar.style.left);
+          if (navbar.style.left === "-100%") {
+            navbar.style.left = "0%";
+          } else {
+            navbar.style.left = "-100%";
+          }
+        }}
+      />
       <label for="check" className="checkbtn">
         <img src={MenuPNG} alt="" />
       </label>
@@ -50,6 +62,10 @@ const Navbar = () => {
             // smooth={true}
             // offset={-50}
             // duration={500}
+            onClick={() => {
+              let navbar = document.querySelector(".navbar__box");
+              navbar.style.left = "-100%";
+            }}
           >
             HOME
           </NavLink>
@@ -62,6 +78,10 @@ const Navbar = () => {
             smooth={true}
             offset={-50}
             duration={500}
+            onClick={() => {
+              let navbar = document.querySelector(".navbar__box");
+              navbar.style.left = "-100%";
+            }}
           >
             ABOUT
           </Link>
@@ -75,12 +95,23 @@ const Navbar = () => {
             smooth={true}
             offset={-50}
             duration={500}
+            onClick={() => {
+              let navbar = document.querySelector(".navbar__box");
+              navbar.style.left = "-100%";
+            }}
           >
             TEAM
           </Link>
         </li>
         <li className="navbar_itemBox">
-          <NavLink to="/resources" className="navbar__item">
+          <NavLink
+            to="/resources"
+            className="navbar__item"
+            onClick={() => {
+              let navbar = document.querySelector(".navbar__box");
+              navbar.style.left = "-100%";
+            }}
+          >
             RESOURCES
           </NavLink>
         </li>
@@ -90,12 +121,26 @@ const Navbar = () => {
           </NavLink>
         </li> */}
         <li className="navbar_itemBox">
-          <NavLink to="/gallery" className="navbar__item">
+          <NavLink
+            to="/gallery"
+            className="navbar__item"
+            onClick={() => {
+              let navbar = document.querySelector(".navbar__box");
+              navbar.style.left = "-100%";
+            }}
+          >
             GALLERY
           </NavLink>
         </li>
         <li className="navbar_itemBox">
-          <NavLink className="navbar__item" to="/contact">
+          <NavLink
+            className="navbar__item"
+            to="/contact"
+            onClick={() => {
+              let navbar = document.querySelector(".navbar__box");
+              navbar.style.left = "-100%";
+            }}
+          >
             CONTACT
           </NavLink>
         </li>
