@@ -30,10 +30,11 @@ exports.postResource = async (req, res, next) => {
     console.log(heading);
     console.log(info);
     try {
-      const user = await User.findOne({ token: token });
+      const user = await User.findOne();
 
-      if (!user) {
-        res.status(202).json({
+      const index = user.token.indexOf(token);
+      if (index <= -1) {
+        return res.status(202).json({
           status: 202,
           ok: true,
           error: true,
@@ -98,10 +99,11 @@ exports.postRemoveResource = async (req, res, next) => {
     const token = req.headers["auth"];
     console.log(heading + " " + info);
     try {
-      const user = await User.findOne({ token: token });
+      const user = await User.findOne();
 
-      if (!user) {
-        res.status(202).json({
+      const index = user.token.indexOf(token);
+      if (index <= -1) {
+        return res.status(202).json({
           status: 202,
           ok: true,
           error: true,

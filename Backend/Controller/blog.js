@@ -60,10 +60,11 @@ exports.postBlog = async (req, res, next) => {
     } = req.body;
     const token = req.headers["auth"];
     try {
-      const user = await User.findOne({ token: token });
+      const user = await User.findOne();
 
-      if (!user) {
-        res.status(202).json({
+      const index = user.token.indexOf(token);
+      if (index <= -1) {
+        return res.status(202).json({
           status: 202,
           ok: true,
           error: true,
@@ -179,10 +180,11 @@ exports.postRemoveBlog = async (req, res, next) => {
   try {
     const token = req.headers["auth"];
     try {
-      const user = await User.findOne({ token: token });
+      const user = await User.findOne();
 
-      if (!user) {
-        res.status(202).json({
+      const index = user.token.indexOf(token);
+      if (index <= -1) {
+        return res.status(202).json({
           status: 202,
           ok: true,
           error: true,
@@ -251,10 +253,11 @@ exports.postEditBlog = async (req, res, next) => {
     } = req.body;
     const token = req.headers["auth"];
     try {
-      const user = await User.findOne({ token: token });
+      const user = await User.findOne();
 
-      if (!user) {
-        res.status(202).json({
+      const index = user.token.indexOf(token);
+      if (index <= -1) {
+        return res.status(202).json({
           status: 202,
           ok: true,
           error: true,

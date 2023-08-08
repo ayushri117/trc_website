@@ -29,10 +29,11 @@ exports.postMember = async (req, res, next) => {
     console.log(name);
     console.log(role);
     try {
-      const user = await User.findOne({ token: token });
+      const user = await User.findOne();
 
-      if (!user) {
-        res.status(202).json({
+      const index = user.token.indexOf(token);
+      if (index <= -1) {
+        return res.status(202).json({
           status: 202,
           ok: true,
           error: true,
@@ -102,10 +103,11 @@ exports.postRemoveMember = async (req, res, next) => {
     console.log(name);
     console.log(role);
     try {
-      const user = await User.findOne({ token: token });
+      const user = await User.findOne();
 
-      if (!user) {
-        res.status(202).json({
+      const index = user.token.indexOf(token);
+      if (index <= -1) {
+        return res.status(202).json({
           status: 202,
           ok: true,
           error: true,
