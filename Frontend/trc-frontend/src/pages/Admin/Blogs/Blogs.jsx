@@ -69,6 +69,7 @@ const Blogs = () => {
         onChange={changeSelectedResHandler}
         style={{ width: "200px" }}
       >
+        <option value="Select-Resource">Select-Resource</option>
         {rescorceOption.map((resource) => (
           <option value={`${resource.value}`}>{resource.name}</option>
         ))}

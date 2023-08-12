@@ -9,17 +9,16 @@ import faculty3 from "../../assets/faculty3.jpg";
 import { Phone } from "feather-icons-react/build/IconComponents";
 import { Mail } from "feather-icons-react/build/IconComponents";
 import { Linkedin } from "feather-icons-react/build/IconComponents";
-import { motion, useInView, useAnimation } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 import { useLoaderData, redirect, json, Await, defer } from "react-router-dom";
 import axios from "axios";
 import Skeleton from "react-loading-skeleton";
 import { Suspense } from "react";
+import { useInView } from "react-intersection-observer";
 
 const Team = () => {
-  let ref1 = useRef(null);
-  let ref2 = useRef(null);
-  let inView1 = useInView(ref1, { once: true });
-  let inView2 = useInView(ref2, { once: true });
+  const { ref: ref1, inView: inView1 } = useInView();
+  const { ref: ref2, inView: inView2 } = useInView();
   let facultyControl = useAnimation();
   let memberControl = useAnimation();
   const data = useLoaderData();
@@ -35,6 +34,8 @@ const Team = () => {
       memberControl.start("animate");
     }
   }, [inView2]);
+
+  console.log(inView2);
 
   return (
     <div className="team_container">
@@ -71,8 +72,35 @@ const Team = () => {
             }
           >
             <Await resolve={data.TeamData}>
+              {(loadedTeam) => {
+                if (loadedTeam.length !== 0) {
+                  return (
+                    <div className="Team_Card_Wrapper" ref={ref2}>
+                      {loadedTeam.map((item) => {
+                        console.log(loadedTeam);
+                        if (item.isFaculty) {
+                          return (
+                            <MemberCard
+                              control={memberControl}
+                              profileImage={item.image}
+                              name={item.name}
+                              role={item.role}
+                              delay={0}
+                            ></MemberCard>
+                          );
+                        }
+                      })}
+                    </div>
+                  );
+                } else {
+                  return <></>;
+                }
+              }}
+            </Await>
+            {/* <Await resolve={data.TeamData}>
               {(loadedTeam) =>
                 // console.log(loadedTeamData.length);
+                
                 loadedTeam.length !== 0 ? (
                   loadedTeam.map((item) => {
                     if (item.isFaculty) {
@@ -91,7 +119,7 @@ const Team = () => {
                   <p style={{ color: "white" }}>No Faculty Found</p>
                 )
               }
-            </Await>
+            </Await> */}
           </Suspense>
         </div>
         {data.TeamData ? (
@@ -112,7 +140,7 @@ const Team = () => {
               },
             }}
             initial="hidden"
-            animate={facultyControl}
+            animate={memberControl}
           >
             TEAM
           </motion.h1>
@@ -120,7 +148,7 @@ const Team = () => {
           <></>
         )}
 
-        <div className="team_mem_members" ref={ref2}>
+        <div className="team_mem_members">
           <Suspense
             fallback={
               <>
@@ -134,7 +162,7 @@ const Team = () => {
               {(loadedTeam) => {
                 if (loadedTeam.length !== 0) {
                   return (
-                    <>
+                    <div className="Team_Card_Wrapper" ref={ref2}>
                       {loadedTeam.map((item) => {
                         console.log(loadedTeam);
                         if (!item.isFaculty) {
@@ -149,7 +177,7 @@ const Team = () => {
                           );
                         }
                       })}
-                    </>
+                    </div>
                   );
                 } else {
                   return <></>;

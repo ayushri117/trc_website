@@ -111,3 +111,16 @@
     background: linear-gradient(135deg , rgba(20, 24, 26, 1) , rgba(255,255,255,0));
     transition: all 0.5s ease;
 }
+
+.Team_Card_Wrapper
+{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin-inline: 40px;
+    margin-right: 32px;
+    margin-left: 32px;
+    flex-wrap: wrap;
+}

@@ -1,17 +1,25 @@
 import React, { useRef, useEffect } from "react";
 import "./AboutUs.css";
-import { motion, useInView, useAnimation } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 import SplitType from "split-type";
 import { animate, stagger } from "motion";
+import { useInView } from "react-intersection-observer";
 
 const AboutUs = () => {
-  let ref = useRef(null);
-  let inView = useInView(ref, { once: true });
+  const { ref, inView } = useInView();
   let headingControl = useAnimation();
 
   useEffect(() => {
-    const paralines = new SplitType("#about_content", { types: "lines" });
-    const aboutElement = [...paralines.lines];
+    const paralines1 = new SplitType("#about_content_1", { types: "lines" });
+    const paralines2 = new SplitType("#about_content_2", { types: "lines" });
+    const paralines3 = new SplitType("#about_content_3", { types: "lines" });
+    const paralines4 = new SplitType("#about_content_4", { types: "lines" });
+    const aboutElement = [
+      ...paralines1.lines,
+      ...paralines2.lines,
+      ...paralines3.lines,
+      ...paralines4.lines,
+    ];
     if (inView) {
       headingControl.start("animate");
 
@@ -29,7 +37,6 @@ const AboutUs = () => {
       <motion.div className="about_overlay">
         {" "}
         <motion.h1
-          ref={ref}
           variants={{
             hidden: {
               y: 24,
@@ -50,31 +57,37 @@ const AboutUs = () => {
         >
           ABOUT US
         </motion.h1>
-        <p className="about_content" id="about_content">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis nam
-          tempora, eos pariatur neque cumque commodi nostrum, sint suscipit
-          libero delectus atque veritatis aspernatur incidunt nemo dicta
-          voluptates at sequi facilis ducimus iste! Optio quae, nemo quasi
-          reiciendis sint odit, veniam fuga corporis delectus molestiae totam
-          quaerat modi sapiente distinctio. Corporis harum quidem libero tempora
-          nobis repellat possimus ipsum veniam rerum aspernatur? Optio,
-          molestias? Hic at porro exercitationem dolorum earum quia odio,
-          aperiam minus sint aspernatur sapiente maiores iste magni recusandae
-          necessitatibus omnis expedita quae doloremque voluptas. Corporis
-          numquam cum quis? Corporis inventore adipisci rerum libero, architecto
-          magnam quod quis? Culpa impedit deleniti natus labore. Recusandae
-          itaque dolorem amet quisquam assumenda ipsam saepe sequi enim quia.
-          Blanditiis sint ducimus pariatur rerum enim nihil vitae aliquam labore
-          iusto voluptatibus. Ullam provident ipsum commodi eaque alias quisquam
-          beatae quaerat deserunt incidunt, porro ex. Neque facere tempora
-          dolorum voluptatem sit corporis odit quia labore asperiores atque
-          placeat veniam, cupiditate blanditiis fuga autem? Rem corporis id
-          molestiae. Ratione aliquam voluptatem maiores velit, repellat ipsa
-          omnis enim quisquam, nulla, consequatur eius! Illum labore corrupti
-          eos quae esse ipsum, fugit magnam voluptate quo nihil veritatis,
-          minima molestias! Molestiae eius doloribus unde veniam in eum modi
-          iste.
-        </p>
+        <div className="about_info_box" ref={ref}>
+          <p className="about_content" id="about_content_1">
+            The Robotics Club (TRC) at IIT Palakkad was founded in 2016, drawing
+            a diverse group of robot enthusiasts. TRC is a place where passion
+            and creativity collide, creating a haven of joy for those fascinated
+            by robotics. A sanctuary where your imagination can soar to great
+            heights, Welcome to TRC!
+          </p>
+          <p className="about_content" id="about_content_2">
+            Our objective is to provide you with a platform that encourages
+            real-world learning. Our wide range of technologies includes
+            unmanned aerial vehicles, hybrid wheels, and bio-robotics, where we
+            created a prosthetic arm. With our dynamic approach, we believe you
+            will find an excellent opportunity to learn, collaborate, and
+            innovate with us.
+          </p>
+          <p className="about_content" id="about_content_3">
+            Embracing every milestone achieved and valuing teamwork and
+            knowledge sharing are the principles we stand by at TRC. Our club
+            provides an environment where people, no matter their level of
+            expertise, can assemble to push beyond limits and exchange
+            innovative concepts.
+          </p>
+          <p className="about_content" id="about_content_4">
+            Discover new technological boundaries and join us on a thrilling
+            adventure of experimentation, creation, and using robots to shape
+            the future! No matter who you are or where you come from, our
+            community embraces everyone. Let's indulge our curiosity and keep
+            pushing the limits in the constantly evolving world of robotics!
+          </p>
+        </div>
       </motion.div>
     </div>
   );
