@@ -8,17 +8,19 @@ const Resource = require("./Model/Resource");
 const Blog = require("./Model/Blog");
 const Gallery = require("./Model/Gallery");
 
-require("dotenv").config({ path: "/.env" });
+require("dotenv").config({ path: "./.env" });
 
-const username = process.env["DATABASE_USERNAME"];
-const password = process.env["DATABASE_PASSWORD"];
+const username = process.env.DATABASE_USERNAME;
+const password = process.env.DATABASE_PASSWORD;
 const port = process.env["PORT"] || 5000;
+
 
 const MONGODB_URI = `mongodb+srv://${username}:${password}@cluster0.fj5wuhm.mongodb.net/test`;
 const authRoute = require("./Routes/auth");
 const teamRoute = require("./Routes/team");
 const resourceRoute = require("./Routes/resource");
 const blogRoute = require("./Routes/blog");
+const adminRoute= require("./Routes/admin");
 const galleryRoute = require("./Routes/gallery");
 
 app.use(express.json());
@@ -33,6 +35,7 @@ app.use(teamRoute);
 app.use(resourceRoute);
 app.use(blogRoute);
 app.use(galleryRoute);
+app.use(adminRoute);
 
 mongoose
   .connect(MONGODB_URI)

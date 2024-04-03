@@ -1,91 +1,68 @@
 const User = require("../Model/User");
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 
 exports.login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
-    console.log(email);
-    console.log(password);
 
     if (!(email && password)) {
-      console.log("All Feilds Mandatory");
+      // console.log("All Fields are Mandatory");
       res.status(201).json({
-        status: 201,
-        ok: true,
-        error: true,
-        message: "All Feilds Mandatory",
+        message: "All Fields Mandatory",
       });
     }
 
     const user = await User.findOne({ email });
-
-    if (user) {
-      console.log("user Found");
-      const token = jwt.sign(
-        { user_id: user._id, email },
-        process.env.TOKEN_KEY,
-        {
-          expiresIn: "2h",
-        }
-      );
-
-      user.token.push(token);
-
-      await user.save();
-
-      res.status(200).json({
-        status: 200,
-        ok: true,
-        message: "User Logged In",
-        email: email,
-        token: token,
-        expiresIn: "2h",
-      });
-    } else {
-      console.log("User not found!");
-      res.status(202).json({
-        status: 202,
-        ok: true,
-        error: true,
-        message: "User not found!",
+    if (!user) {
+      return res.status(401).json({
+        message: "Invalid Credentials",
       });
     }
+    const decryptPassword = await bcrypt.compare(password, user.password);
+    if (decryptPassword === false) {
+      return res.status(401).json({
+        message: "Invalid Credentials",
+      });
+    }
+    const token = jwt.sign(
+      { user_id: user._id, email },
+      process.env.TOKEN_KEY,
+      {
+        expiresIn: "2h",
+      }
+    );
+    // user.token.push(token);
+    // await user.save();
+    res.status(200).json({
+      email: email,
+      token: token,
+      expiresIn: "2h",
+    });
   } catch (err) {
     console.log(err);
-
     res.status(500).json({
-      status: 500,
-      ok: false,
       message: "Server Error",
     });
   }
 };
 
-exports.logout = async (req, res, next) => {
-  try {
-    const token = req.headers["auth"];
-    const user = await User.findOne();
+exports.register = async (req, res) => {
+  const { fullName, email, roll_no } = req.body;
 
-    if (user) {
-      console.log("user Found for logout");
-
-      const index = user.token.indexOf(token);
-      if (index > -1) {
-        user.token.splice(index, 1);
-      }
-
-      await user.save();
-
-      res.status(200).json({
-        statusCode: 200,
-        ok: true,
-        message: "User Has been logged out",
+  try{
+      const user = await User({
+        name: fullName,
+        email,
+        roll_no,
       });
-    }
-  } catch (err) {
-    res.status(500).json({
-      status: 500,
-      ok: false,
+      await user.save();
+      return res.status(201).json({
+        message: "User Created Successfully",
+      });
+  }catch(err){
+    console.log(err);
+    return res.status(500).json({
       message: "Server Error",
     });
   }
