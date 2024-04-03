@@ -8,11 +8,11 @@ const Resource = require("./Model/Resource");
 const Blog = require("./Model/Blog");
 const Gallery = require("./Model/Gallery");
 
-require("dotenv").config({ paht: "/.env" });
+require("dotenv").config({ path: "/.env" });
 
 const username = process.env["DATABASE_USERNAME"];
 const password = process.env["DATABASE_PASSWORD"];
-const port = process.env["PORT"];
+const port = process.env["PORT"] || 5000;
 
 const MONGODB_URI = `mongodb+srv://${username}:${password}@cluster0.fj5wuhm.mongodb.net/test`;
 const authRoute = require("./Routes/auth");

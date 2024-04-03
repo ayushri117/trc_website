@@ -6,7 +6,7 @@ const ResourceSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  info: {
+  description: {
     type: String,
     required: true,
   },
@@ -14,14 +14,6 @@ const ResourceSchema = new mongoose.Schema({
     type: String,
     default:
       "https://entrepreneurhandbook.co.uk/wp-content/uploads/2021/03/Business-digital-tools.jpg.webp",
-  },
-  link1: {
-    type: String,
-    default: null,
-  },
-  link2: {
-    type: String,
-    default: null,
   },
 });
 

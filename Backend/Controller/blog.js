@@ -45,30 +45,27 @@ exports.getBlog = async (req, res, next) => {
     });
   }
 };
-
 exports.postBlog = async (req, res, next) => {
   try {
     const {
       title,
       date,
-      auther,
+      author,
       previewImage,
       preview,
       resource,
       order,
-      ytLink,
     } = req.body;
     const token = req.headers["auth"];
     try {
       const user = await User.findOne();
-
       const index = user.token.indexOf(token);
       if (index <= -1) {
         return res.status(202).json({
           status: 202,
           ok: true,
           error: true,
-          message: "Unautharized!",
+          message: "Unauthorized!",
         });
       }
     } catch (error) {
@@ -76,7 +73,7 @@ exports.postBlog = async (req, res, next) => {
     }
 
     if (
-      !(title && date && auther && previewImage && preview && order && resource)
+      !(title && date && author && previewImage && preview && order && resource)
     ) {
       console.log("All Feilds Mandatory");
       res.status(201).json({
@@ -106,7 +103,7 @@ exports.postBlog = async (req, res, next) => {
     const blog = await Blog.findOne({
       title: title,
       date: date,
-      auther: auther,
+      auther: author,
       order: order,
       resourceRef: resource,
     });

@@ -5,11 +5,13 @@ const router = express.Router();
 
 const blogController = require("../Controller/blog");
 
-// router.post("/login", authController.login);
+
 router.get("/blogs", blogController.getBlogs);
-router.post("/blog", blogController.getBlog);
-router.post("/addblog", auth, blogController.postBlog);
-router.post("/editblog", auth, blogController.postEditBlog);
-router.post("/removeBlog", auth, blogController.postRemoveBlog);
+router.post("/blog/:id", blogController.getBlog);
+router.post("/blog/add", auth, blogController.postBlog);
+router.post("/blog/edit/:id", auth, blogController.postEditBlog);
+router.post("/blog/previewEdit/:id", auth, blogController.postEditBlog);
+router.post("/blog/delete/:id", auth, blogController.postRemoveBlog);
+router.post("/blogs/user/:id", blogController.getUserBlogs);
 
 module.exports = router;

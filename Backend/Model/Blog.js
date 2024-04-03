@@ -10,33 +10,32 @@ const blogSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  auther: {
+  author: {
     type: String,
     required: true,
+  },
+  status:{
+    type:String,
+    default:"Not sent" 
+  },
+  allowEdit:{
+    type:Boolean,
+    default:true,
   },
   previewImg: {
     type: String,
     required: true,
   },
-  preview: {
+  description: {
     type: String,
     required: true,
   },
-  order: {
-    type: Number,
-    required: true,
-  },
-  info: {
-    type: Array,
-    default: [],
+  content: {
+    type: String,
   },
   resourceRef: {
     type: Schema.Types.ObjectId,
     ref: "ResourceCollection",
-  },
-  linkYT: {
-    type: String,
-    default: null,
   },
 });
 
